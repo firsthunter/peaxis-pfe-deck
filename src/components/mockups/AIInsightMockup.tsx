@@ -1,6 +1,6 @@
 /**
- * AIInsightMockup — Explainable AI panel
- * Recreated from peaxis-hire/src/components/hire/job-workspace/ai-insight-panel.tsx
+ * AIInsightMockup — Domain scoring panel
+ * Recreated from Wayloom's clinician session review view
  */
 
 interface Props {
@@ -9,13 +9,13 @@ interface Props {
   compact?: boolean
 }
 
-const matchedSkills = ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'REST API']
-const missingSkills = ['GraphQL', 'Docker', 'Redis']
+const strongDomains = ['Orientation', 'Attention', 'Language', 'Executive Function', 'Visuospatial']
+const flaggedDomains = ['Memory Recall', 'Fluency', 'Delayed Recall']
 
-export default function AIInsightMockup({ score = 87, name = 'Sara M.', compact = false }: Props) {
-  const sc = score >= 80 ? { color: '#00B8B3', label: 'Excellent Match', conf: 'High confidence' }
-           : score >= 60 ? { color: '#374151', label: 'Good Match',      conf: 'Moderate confidence' }
-           :               { color: '#FE595A', label: 'Partial Match',    conf: 'Low confidence' }
+export default function AIInsightMockup({ score = 87, name = 'Amina T.', compact = false }: Props) {
+  const sc = score >= 80 ? { color: '#00B8B3', label: 'Within Normal Range', conf: 'High confidence' }
+           : score >= 60 ? { color: '#374151', label: 'Borderline',          conf: 'Moderate confidence' }
+           :               { color: '#FE595A', label: 'Below Normative Range', conf: 'Flag for clinician review' }
 
   const f = compact ? { heading: 11, sub: 9, label: 10, skill: 9, chip: 8 }
                     : { heading: 13, sub: 10, label: 11, skill: 10, chip: 9 }
@@ -31,8 +31,8 @@ export default function AIInsightMockup({ score = 87, name = 'Sara M.', compact 
           <span style={{ fontSize: 14, lineHeight: 1 }}>✦</span>
         </div>
         <div>
-          <div className="font-bold text-[#001027]" style={{ fontSize: f.heading }}>AI Analysis — {name}</div>
-          <div style={{ fontSize: f.sub, color: '#6B7280' }}>Powered by PEAXIS AI</div>
+          <div className="font-bold text-[#001027]" style={{ fontSize: f.heading }}>Domain Scores — {name}</div>
+          <div style={{ fontSize: f.sub, color: '#6B7280' }}>Powered by Wayloom AI Brain</div>
         </div>
       </div>
 
@@ -60,13 +60,13 @@ export default function AIInsightMockup({ score = 87, name = 'Sara M.', compact 
           </div>
         </div>
 
-        {/* Matched skills */}
+        {/* Strong domains */}
         <div>
           <div className="font-bold uppercase tracking-wider mb-1.5" style={{ fontSize: f.sub, color: '#6B7280' }}>
-            Matched Skills
+            Within Normal Range
           </div>
           <div className="flex flex-wrap gap-1">
-            {matchedSkills.map(s => (
+            {strongDomains.map(s => (
               <span
                 key={s}
                 className="px-2 py-0.5 rounded-full font-semibold border"
@@ -78,13 +78,13 @@ export default function AIInsightMockup({ score = 87, name = 'Sara M.', compact 
           </div>
         </div>
 
-        {/* Missing skills */}
+        {/* Flagged domains */}
         <div>
           <div className="font-bold uppercase tracking-wider mb-1.5" style={{ fontSize: f.sub, color: '#6B7280' }}>
-            Skills Gap
+            Flagged for Review
           </div>
           <div className="flex flex-wrap gap-1">
-            {missingSkills.map(s => (
+            {flaggedDomains.map(s => (
               <span
                 key={s}
                 className="px-2 py-0.5 rounded-full font-semibold border"
@@ -101,12 +101,12 @@ export default function AIInsightMockup({ score = 87, name = 'Sara M.', compact 
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border cursor-pointer"
           style={{ borderColor: 'rgba(0,184,179,0.2)', background: 'rgba(0,184,179,0.04)' }}
         >
-          <span style={{ fontSize: f.chip, color: '#009E9A', fontWeight: 600 }}>View AI explanation</span>
+          <span style={{ fontSize: f.chip, color: '#009E9A', fontWeight: 600 }}>View scoring rationale</span>
           <span style={{ fontSize: f.chip, color: '#009E9A' }}>›</span>
         </div>
 
         {/* Disclaimer */}
-        <div style={{ fontSize: 8, color: '#9CA3AF' }}>AI insights are suggestions only. Human review required.</div>
+        <div style={{ fontSize: 8, color: '#9CA3AF' }}>AI scoring assists interpretation only. Clinician review required.</div>
       </div>
     </div>
   )

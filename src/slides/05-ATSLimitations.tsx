@@ -8,54 +8,46 @@ interface Props { step: number }
 
 const comparison = [
   {
-    feature: 'Core ATS',
-    greenhouse: true,
-    lever: true,
-    workable: true,
-    ashby: true,
-    hirevue: false,
-    eightfold: 'partial',
-    peaxis: true,
+    feature: 'Cultural Adaptation',
+    braincheck: false,
+    linus: false,
+    altoida: false,
+    wayloom: true,
   },
   {
-    feature: 'Candidate Portal',
-    greenhouse: 'basic',
-    lever: 'basic',
-    workable: 'basic',
-    ashby: false,
-    hirevue: true,
-    eightfold: false,
-    peaxis: true,
+    feature: 'Adaptive Testing',
+    braincheck: false,
+    linus: false,
+    altoida: false,
+    wayloom: true,
   },
   {
-    feature: 'Explainable AI',
-    greenhouse: false,
-    lever: false,
-    workable: 'partial',
-    ashby: false,
-    hirevue: 'partial',
-    eightfold: true,
-    peaxis: true,
+    feature: 'Conversational Delivery',
+    braincheck: false,
+    linus: false,
+    altoida: false,
+    wayloom: true,
   },
   {
-    feature: 'Integrated Ecosystem',
-    greenhouse: false,
-    lever: false,
-    workable: 'partial',
-    ashby: 'partial',
-    hirevue: false,
-    eightfold: false,
-    peaxis: true,
+    feature: 'Longitudinal Monitoring',
+    braincheck: true,
+    linus: true,
+    altoida: true,
+    wayloom: true,
   },
   {
-    feature: 'Tenant Isolation',
-    greenhouse: true,
-    lever: true,
-    workable: true,
-    ashby: true,
-    hirevue: true,
-    eightfold: true,
-    peaxis: true,
+    feature: 'Caregiver Integration',
+    braincheck: false,
+    linus: false,
+    altoida: false,
+    wayloom: true,
+  },
+  {
+    feature: 'At-Home Usability',
+    braincheck: false,
+    linus: false,
+    altoida: false,
+    wayloom: true,
   },
 ]
 
@@ -94,10 +86,10 @@ export default function ATSLimitations({ step }: Props) {
             <SectionTag section="Existing Solutions & Gap" number="4" />
           </motion.div>
           <motion.h2 variants={fadeUp} className="text-4xl font-extrabold leading-tight tracking-tight text-px-navy">
-            Competitive <GradientText variant="teal">Analysis</GradientText>
+            Competitive <GradientText variant="teal">Landscape</GradientText>
           </motion.h2>
           <motion.p variants={fadeUp} className="text-sm text-px-muted max-w-2xl">
-            How existing recruitment platforms cover core ATS, candidate experience, and explainability.
+            How existing cognitive-testing tools cover adaptation, delivery, and caregiver access.
           </motion.p>
         </motion.div>
 
@@ -111,35 +103,29 @@ export default function ATSLimitations({ step }: Props) {
               className="bg-white rounded-xl border border-[var(--border)] overflow-hidden shadow-sm"
             >
               {/* Table header */}
-              <div className="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_1fr_1fr_1.1fr] px-4 py-2.5 bg-[#F8FAFC] border-b border-[var(--border)] items-center">
-                <span className="text-xs font-bold text-px-muted uppercase tracking-wider">Capability</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">Greenhouse</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">Lever</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">Workable</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">Ashby</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">HireVue</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">Eightfold AI</span>
-                <span className="text-xs font-bold text-[#00B8B3] uppercase tracking-wider text-center">PEAXIS</span>
+              <div className="grid grid-cols-[1.8fr_1fr_1fr_1fr_1.1fr] px-4 py-2.5 bg-[#F8FAFC] border-b border-[var(--border)] items-center">
+                <span className="text-xs font-bold text-px-muted uppercase tracking-wider">Feature</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">BrainCheck</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">Linus Health</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-center text-gray-500">Altoida</span>
+                <span className="text-xs font-bold text-[#00B8B3] uppercase tracking-wider text-center">Wayloom</span>
               </div>
 
               {/* Rows */}
               {comparison.map((row, i) => (
                 <AnimatePresence key={i}>
-                  {step >= (i < 3 ? 1 : i < 5 ? 2 : 3) && (
+                  {step >= (i < 2 ? 1 : i < 4 ? 2 : 3) && (
                     <motion.div
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: (i % 3) * 0.05 }}
-                      className="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_1fr_1fr_1.1fr] px-4 py-2.5 border-b border-[var(--border)] last:border-b-0 hover:bg-[#F8FAFC] transition-colors items-center"
+                      className="grid grid-cols-[1.8fr_1fr_1fr_1fr_1.1fr] px-4 py-2.5 border-b border-[var(--border)] last:border-b-0 hover:bg-[#F8FAFC] transition-colors items-center"
                     >
                       <span className="text-xs font-semibold text-px-navy">{row.feature}</span>
-                      <StatusCell value={row.greenhouse} />
-                      <StatusCell value={row.lever} />
-                      <StatusCell value={row.workable} />
-                      <StatusCell value={row.ashby} />
-                      <StatusCell value={row.hirevue} />
-                      <StatusCell value={row.eightfold} />
-                      <StatusCell value={row.peaxis} />
+                      <StatusCell value={row.braincheck} />
+                      <StatusCell value={row.linus} />
+                      <StatusCell value={row.altoida} />
+                      <StatusCell value={row.wayloom} />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -158,8 +144,8 @@ export default function ATSLimitations({ step }: Props) {
             >
               <div className="w-1.5 h-6 rounded-full bg-[#6B7280] flex-shrink-0" />
               <p className="text-sm text-px-navy leading-relaxed">
-                <strong>Observation:</strong> few platforms combine core ATS workflows, a candidate-facing portal,
-                and explainable AI scoring in a single, SME-accessible product.
+                <strong>Observation:</strong> existing tools monitor cognitive decline longitudinally, but none combine
+                cultural adaptation, adaptive conversational testing, and caregiver integration in one at-home-usable product.
               </p>
             </motion.div>
           )}

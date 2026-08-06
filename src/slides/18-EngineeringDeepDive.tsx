@@ -181,12 +181,12 @@ function MiniTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
 
 export function ArchitectureDecisions({ step }: Props) {
   const decisions = [
-    ['Modular monolith', 'Domain stays cohesive; less distributed complexity.', 'vs microservices'],
-    ['Separate AI service', 'Python ML stack isolated from core API load.', 'FastAPI'],
-    ['Specialized web apps', 'Separate experiences for platform, recruiter, candidate, administration, and landing.', 'Next.js'],
-    ['PostgreSQL', 'Relational workflows with strong consistency.', 'Prisma'],
-    ['BullMQ', 'Heavy AI work moves outside request lifecycle.', 'async'],
-    ['pgvector', 'Retrieval for job discovery and cited evidence.', 'retrieval'],
+    ['Four-service split', 'Web, API, AI engine, and execution visualizer stay independently deployable.', 'per-app CI'],
+    ['Separate AI service', 'Python/LangGraph stack isolated from institutional API load.', 'FastAPI'],
+    ['Role-scoped web app', 'Root, institution, clinician, and patient-session views share one Next.js app.', 'Next.js'],
+    ['PostgreSQL', 'Institutional, auth, and plan data with strong consistency.', 'Prisma'],
+    ['MongoDB', 'Engine sessions and phase-run audit trail during the Postgres migration.', 'async'],
+    ['Deterministic cache', 'Redis, keyed on phase + input hash + prompt version.', 'retrieval'],
   ]
 
   return (
@@ -211,27 +211,27 @@ export function EndToEndAIPipeline({ step }: Props) {
     <EngineeringSlide
       title="AI Runtime"
       accent="Architecture"
-      subtitle="NestJS orchestrates, FastAPI infers, and PostgreSQL is the source of truth."
+      subtitle="NestJS orchestrates institutional state, the AI Brain infers, and PostgreSQL/MongoDB are the source of truth."
     >
       <Reveal step={step} at={1}>
         <Flow
           items={[
-            { label: 'Next.js', sub: 'user action', icon: <Users size={17} />, tone: 'gray' },
+            { label: 'Next.js', sub: 'clinician / patient action', icon: <Users size={17} />, tone: 'gray' },
             { label: 'NestJS API', sub: 'policy + write', icon: <Server size={17} />, tone: 'navy' },
-            { label: 'AiWorkItem', sub: 'durable state', icon: <ShieldCheck size={17} />, tone: 'navy' },
-            { label: 'BullMQ', sub: 'ai-tasks queue', icon: <RefreshCcw size={17} />, tone: 'teal' },
-            { label: 'Worker', sub: 'execution', icon: <Cpu size={17} />, tone: 'yellow' },
+            { label: 'AI Brain', sub: 'LangGraph phase graph', icon: <ShieldCheck size={17} />, tone: 'navy' },
+            { label: 'Model Router', sub: 'per-phase provider selection', icon: <RefreshCcw size={17} />, tone: 'teal' },
+            { label: 'Deterministic cache', sub: 'Redis', icon: <Cpu size={17} />, tone: 'yellow' },
             { label: 'FastAPI', sub: 'inference only', icon: <BrainCircuit size={17} />, tone: 'coral' },
-            { label: 'Provider', sub: 'Gemini or Azure', icon: <Sparkles size={17} />, tone: 'teal' },
+            { label: 'Provider', sub: 'Gemini or Groq', icon: <Sparkles size={17} />, tone: 'teal' },
           ]}
         />
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-2 gap-3 mt-3">
-        <Card title="Synchronous request path" detail="Validate, authorize, persist business state, and return a processing response. Short generation or extraction helpers can call FastAPI directly." tone="navy" />
-        <Card title="Asynchronous worker path" detail="Call FastAPI, persist parse/embedding/assessment outputs, and update the durable work and application state." tone="teal" />
+        <Card title="Synchronous request path" detail="Validate, authorize, persist institutional state, and return a processing response for short helper calls." tone="navy" />
+        <Card title="Digitization pipeline path" detail="Ingest, layout, reading order, segment, score, assemble, validate, and repair — each phase cached and retryable." tone="teal" />
       </Reveal>
       <Reveal step={step} at={3} className="rounded-xl border border-[rgba(254,200,73,0.34)] bg-[#FFFBEB] p-4 mt-3">
-        <p className="text-sm font-black text-px-navy">Return path: the worker writes results to PostgreSQL; Redis is used for queues, locks, heartbeats, and caches—not authoritative AI state.</p>
+        <p className="text-sm font-black text-px-navy">Return path: the engine writes phase results to MongoDB and PostgreSQL; Redis holds the deterministic phase cache—not authoritative state.</p>
       </Reveal>
     </EngineeringSlide>
   )
@@ -240,36 +240,35 @@ export function EndToEndAIPipeline({ step }: Props) {
 export function CVParsingPipeline({ step }: Props) {
   return (
     <EngineeringSlide
-      title="CV Parsing"
+      title="Document Digitization"
       accent="Pipeline"
-      subtitle="A worker turns a validated CV into grounded, structured evidence — without blocking the candidate."
+      subtitle="The AI Brain turns a paper test into a structured, scorable spec — without blocking the clinician."
     >
       <Reveal step={step} at={1}>
-        <p className="text-xs font-bold uppercase tracking-wider text-px-navy mb-2">1. Intake and durable parsing</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-px-navy mb-2">1. Ingest, layout, and reading order</p>
         <Flow
           items={[
-            { label: 'Candidate upload', sub: 'public multipart request', icon: <Users size={17} />, tone: 'gray' },
-            { label: 'File gate', sub: 'type, size, signature, checksum', icon: <ShieldCheck size={17} />, tone: 'navy' },
-            { label: 'ResumeParse', sub: 'pending + PARSE_CV work', icon: <FileText size={17} />, tone: 'yellow' },
-            { label: 'Worker + FastAPI', sub: 'extract and parse', icon: <BrainCircuit size={17} />, tone: 'coral' },
-            { label: 'Parse result', sub: 'READY or NEEDS_REVIEW', icon: <CheckCircle2 size={17} />, tone: 'teal' },
+            { label: 'Clinician upload', sub: 'PDF / scanned pages', icon: <Users size={17} />, tone: 'gray' },
+            { label: 'Ingest node', sub: 'page images + embedded text', icon: <ShieldCheck size={17} />, tone: 'navy' },
+            { label: 'Layout node', sub: 'Gemini Vision block detection', icon: <FileText size={17} />, tone: 'yellow' },
+            { label: 'Reading order', sub: 'column & group detection', icon: <BrainCircuit size={17} />, tone: 'coral' },
+            { label: 'Blocks', sub: 'AtomicItem candidates', icon: <CheckCircle2 size={17} />, tone: 'teal' },
           ]}
         />
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-3 gap-3 mt-3">
-        <Card title="Extract text" detail="PDF, DOCX, and TXT use native extraction. Low-quality PDFs can use Google Vision OCR when enabled." tone="navy" meta="file layer" />
-        <Card title="Structured AI" detail="FastAPI calls the active Gemini or Azure provider at temperature 0 to return strict JSON: skills, experience, education, and citations." tone="coral" meta="inference" />
-        <Card title="Ground + persist" detail="Validation rejects unsupported facts. ResumeParse stores status, warnings, model metadata, and the grounded result; checksum/cache avoid duplicate work." tone="teal" meta="control" />
+        <Card title="Segment" detail="Blocks split into sections and item candidates, then extracted into structured AtomicItems with scoring hints." tone="navy" meta="segment layer" />
+        <Card title="Assemble" detail="Upstream phase outputs merge into a DraftTestSpec: title, time limits, and duration are inferred from document content." tone="coral" meta="assembly" />
+        <Card title="Validate + repair" detail="Quality rules flag blocking errors; a repair node proposes and auto-applies minimal fixes before publishing." tone="teal" meta="control" />
       </Reveal>
       <Reveal step={step} at={3} className="mt-3">
-        <p className="text-xs font-bold uppercase tracking-wider text-px-navy mb-2">2. Candidate confirmation and retrieval preparation</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-px-navy mb-2">2. Clinician review and publish</p>
         <Flow
           items={[
-            { label: 'Candidate confirms', sub: 'one-time claim', tone: 'gray' },
-            { label: 'candidate.resumeParsed', sub: 'structured profile', tone: 'navy' },
-            { label: 'Evidence claims', sub: 'source-cited facts', tone: 'coral' },
-            { label: 'Evidence chunks', sub: 'retrieval units', tone: 'teal' },
-            { label: 'Embeddings', sub: 'vector persistence', tone: 'yellow' },
+            { label: 'Clinician reviews', sub: 'enable, disable, or edit items', tone: 'gray' },
+            { label: 'Spec validator', sub: 'pre-publish gate', tone: 'navy' },
+            { label: 'Normative data', sub: 'scoring rules attached', tone: 'coral' },
+            { label: 'Published test', sub: 'ready for sessions', tone: 'teal' },
           ]}
         />
       </Reveal>
@@ -280,28 +279,28 @@ export function CVParsingPipeline({ step }: Props) {
 export function EvidenceMatchingEngine({ step }: Props) {
   return (
     <EngineeringSlide
-      title="Evidence-Based"
-      accent="Matching Engine"
-      subtitle="Exact rules first; pgvector retrieval only when needed; the backend always owns the final decision."
+      title="AI-Assisted"
+      accent="Scoring Engine"
+      subtitle="Deterministic scoring rules first; AI interprets complex responses; the clinician always owns the final report."
     >
       <Reveal step={step} at={1}>
         <Flow
           items={[
-            { label: 'Requirements', sub: 'recruiter-confirmed definitions', icon: <BriefcaseBusiness size={17} />, tone: 'gray' },
-            { label: 'Candidate claims', sub: 'structured résumé facts', icon: <FileText size={17} />, tone: 'coral' },
-            { label: 'Evidence assessment', sub: 'fingerprinted durable work', icon: <ShieldCheck size={17} />, tone: 'navy' },
-            { label: 'Requirement evaluation', sub: 'satisfaction + verification', icon: <Gauge size={17} />, tone: 'yellow' },
-            { label: 'Alignment score', sub: 'ranking uses current score', icon: <Activity size={17} />, tone: 'teal' },
+            { label: 'Item response', sub: 'patient answer, incl. images', icon: <BriefcaseBusiness size={17} />, tone: 'gray' },
+            { label: 'Scoring rules', sub: 'attached during digitization', icon: <FileText size={17} />, tone: 'coral' },
+            { label: 'AI scoring', sub: 'Gemini Vision for complex items', icon: <ShieldCheck size={17} />, tone: 'navy' },
+            { label: 'Normative adjustment', sub: 'demographic + z-score', icon: <Gauge size={17} />, tone: 'yellow' },
+            { label: 'Domain subscore', sub: 'per cognitive domain', icon: <Activity size={17} />, tone: 'teal' },
           ]}
         />
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-3 gap-3 mt-3">
-        <Card title="1. Exact evidence" detail="NestJS normalizes requirement text, matches candidate claims, and calculates relevant experience months from CV dates." tone="navy" meta="rules first" />
-        <Card title="2. Semantic fallback" detail="If direct evidence is absent, FastAPI creates a 768-dimension embedding; pgvector retrieves up to 8 candidate chunks for classification." tone="coral" meta="retrieval only" />
-        <Card title="3. Deterministic decision" detail="NestJS sets satisfaction, verification, requirement weights, and the 0–100 score. The recruiter reviews the result and decides." tone="teal" meta="human authority" />
+        <Card title="1. Rule-based scoring" detail="Simple item types (multiple choice, digit span, serial subtraction) score deterministically against the attached rubric." tone="navy" meta="rules first" />
+        <Card title="2. AI-assisted scoring" detail="Complex or image-based responses (drawing, audio) are scored by AIScoringService using Gemini Vision, only where item type requires it." tone="coral" meta="AI only where needed" />
+        <Card title="3. Normative comparison" detail="Raw scores are adjusted for demographics and converted to a z-score / percentile against normative population data." tone="teal" meta="human authority" />
       </Reveal>
       <Reveal step={step} at={3} className="rounded-xl bg-[#FFFBEB] border border-[rgba(254,200,73,0.34)] p-4 mt-3">
-        <p className="text-sm font-black text-px-navy">The current alignment and ranking score are the same persisted calculation—not a separate opaque candidate similarity model.</p>
+        <p className="text-sm font-black text-px-navy">The clinician report is generated from the same persisted scores the clinician can review — not a separate opaque model output.</p>
       </Reveal>
     </EngineeringSlide>
   )
@@ -310,53 +309,52 @@ export function EvidenceMatchingEngine({ step }: Props) {
 export function MatchingAlgorithm({ step }: Props) {
   return (
     <EngineeringSlide
-      title="How Matching"
+      title="How Scoring"
       accent="Is Computed"
-      subtitle="A deterministic evidence algorithm; vectors and LLMs only retrieve or classify citations."
+      subtitle="A rule-first pipeline; AI scores only where a rubric can't, and normative data anchors the result."
     >
       <Reveal step={step} at={1} className="grid grid-cols-2 gap-3">
         <Card
-          title="1. Find candidate evidence"
-          detail="Canonical token and simple stem matching compare each requirement with source-cited claims. The fallback searches displayable résumé summary, headline, experience, and project text. Experience requirements merge overlapping date intervals into relevant months."
+          title="1. Attach scoring rules at digitization"
+          detail="Scoring rules and normative data are defined by the clinician when a test is published — searched, discovered, or entered manually via the Normative Discovery Service."
           tone="navy"
           icon={<Search size={18} />}
         />
         <Card
-          title="2. Use vectors only when needed"
-          detail="For unresolved COMPETENCY, RESPONSIBILITY, or TOOL_SYSTEM requirements, FastAPI embeds the requirement. pgvector retrieves only this candidate’s chunks at distance ≤ 0.55 (maximum 8). The classifier sees at most 12 claims plus retrieved chunks and may cite only one supplied source."
+          title="2. Score at session close"
+          detail="Simple items score against the rubric directly. Items requiring judgment (drawing, audio, free response) are scored by Gemini Vision, constrained to the item's scoring rule."
           tone="coral"
           icon={<BrainCircuit size={18} />}
         />
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-[1.05fr_.95fr] gap-3 mt-3">
         <div className="rounded-xl border border-[rgba(0,184,179,0.24)] bg-[#E6FAF9] p-4">
-          <p className="text-sm font-black text-px-navy">3. Apply deterministic requirement states</p>
+          <p className="text-sm font-black text-px-navy">3. Adjust against normative data</p>
           <div className="grid grid-cols-2 gap-x-5 gap-y-2 mt-3 text-sm text-px-navy">
-            <p><strong>No evidence, mandatory</strong><br /><span className="text-px-muted">REQUIRES_VERIFICATION</span></p>
-            <p><strong>No evidence, preferred</strong><br /><span className="text-px-muted">UNKNOWN</span></p>
-            <p><strong>Evidence but years unmet</strong><br /><span className="text-px-muted">PARTIALLY_SATISFIED</span></p>
-            <p><strong>Evidence + policy satisfied</strong><br /><span className="text-px-muted">SATISFIED</span></p>
+            <p><strong>Raw score</strong><br /><span className="text-px-muted">per-item + domain totals</span></p>
+            <p><strong>Demographic adjustment</strong><br /><span className="text-px-muted">age, education, culture</span></p>
+            <p><strong>Z-score</strong><br /><span className="text-px-muted">vs. normative population</span></p>
+            <p><strong>Domain subscore</strong><br /><span className="text-px-muted">e.g. fluency, memory, attention</span></p>
           </div>
         </div>
         <div className="rounded-xl border border-[rgba(254,200,73,0.34)] bg-[#FFFBEB] p-4">
-          <p className="text-sm font-black text-px-navy">4. Persist explainable results</p>
-          <p className="text-sm text-px-muted leading-relaxed mt-3">An <strong className="text-px-navy">EvidenceAssessment</strong> stores input snapshots and the score. Each <strong className="text-px-navy">RequirementEvaluation</strong> retains satisfaction, constraints, and positive cited evidence.</p>
+          <p className="text-sm font-black text-px-navy">4. Persist the reviewable result</p>
+          <p className="text-sm text-px-muted leading-relaxed mt-3">Session results, domain subscores, and item-level records persist together so the clinician report always traces back to a specific response.</p>
         </div>
       </Reveal>
       <Reveal step={step} at={3} className="rounded-xl bg-white border border-[var(--border)] p-4 mt-3">
         <div className="flex items-center justify-between gap-5">
           <div>
-            <p className="text-xs font-bold text-px-muted uppercase tracking-wider">Current GENERAL:v1 score</p>
-            <p className="text-xl font-black text-px-navy mt-1">score = round( Σ(weight × state value × evidence credit) / Σ(weight) )</p>
+            <p className="text-xs font-bold text-px-muted uppercase tracking-wider">Scoring model</p>
+            <p className="text-xl font-black text-px-navy mt-1">domain subscore = normalize( raw score, demographic adjustment, normative z-score )</p>
           </div>
           <div className="flex flex-wrap justify-end gap-2 max-w-[430px]">
-            <Pill tone="navy">required 0.55</Pill>
-            <Pill tone="yellow">experience 0.25</Pill>
-            <Pill>preferred 0.10</Pill>
-            <Pill tone="coral">TRANSFERABLE × 0.60</Pill>
+            <Pill tone="navy">rule-based items</Pill>
+            <Pill tone="yellow">AI-scored items</Pill>
+            <Pill tone="coral">normative lookup</Pill>
           </div>
         </div>
-        <p className="text-sm text-px-muted mt-3">State value: SATISFIED = 100, PARTIALLY_SATISFIED = 60, all other states = 0. The current ranking score equals this alignment score; no separate opaque cosine ranking is used.</p>
+        <p className="text-sm text-px-muted mt-3">Validated scoring logic is preserved end to end — AI assists interpretation, it does not replace the rubric.</p>
       </Reveal>
     </EngineeringSlide>
   )
@@ -365,32 +363,32 @@ export function MatchingAlgorithm({ step }: Props) {
 export function ExplainableAI({ step }: Props) {
   return (
     <EngineeringSlide
-      title="Explainable"
-      accent="AI"
-      subtitle="Each score traces a requirement to cited candidate evidence."
+      title="AI-Assisted,"
+      accent="Clinician-Reviewed"
+      subtitle="Every score traces back to a specific patient response and the rubric that produced it."
     >
       <Reveal step={step} at={1}>
         <Flow
           items={[
-            { label: 'Requirement definition', sub: 'recruiter-confirmed', tone: 'gray' },
-            { label: 'Candidate evidence', sub: 'claims + résumé facts', tone: 'coral' },
-            { label: 'Retrieved evidence', sub: 'optional chunks', tone: 'teal' },
-            { label: 'Evidence assessment', sub: 'stored snapshot', tone: 'navy' },
+            { label: 'Scoring rule', sub: 'clinician-defined rubric', tone: 'gray' },
+            { label: 'Patient response', sub: 'text, audio, drawing, image', tone: 'coral' },
+            { label: 'AI interpretation', sub: 'only for complex items', tone: 'teal' },
+            { label: 'Domain subscore', sub: 'stored snapshot', tone: 'navy' },
           ]}
         />
       </Reveal>
       <Reveal step={step} at={2} className="mt-3">
         <Flow
           items={[
-            { label: 'Requirement evaluation', sub: 'satisfaction + verification', tone: 'yellow' },
-            { label: 'Alignment / ranking', sub: 'same current score', tone: 'teal' },
-            { label: 'Recruiter review', sub: 'human judgment', tone: 'navy' },
-            { label: 'Audit trail', sub: 'snapshots + citations', tone: 'gray' },
+            { label: 'Normative comparison', sub: 'demographic + z-score', tone: 'yellow' },
+            { label: 'Clinician report', sub: 'same persisted scores', tone: 'teal' },
+            { label: 'Clinician review', sub: 'human judgment', tone: 'navy' },
+            { label: 'Shared care view', sub: 'clinician + caregiver', tone: 'gray' },
           ]}
         />
       </Reveal>
       <Reveal step={step} at={3} className="rounded-xl bg-[#E6FAF9] border border-[rgba(0,184,179,0.24)] p-4 mt-3">
-        <p className="text-lg font-black text-px-navy">The LLM can classify supplied citations; NestJS applies scoring and verification rules. Recruiter review is stored, while score-changing override policy remains future work.</p>
+        <p className="text-lg font-black text-px-navy">The AI interprets responses using the same validated scoring logic the clinician defined; the clinician reviews and signs off before the report reaches the caregiver.</p>
       </Reveal>
     </EngineeringSlide>
   )
@@ -404,14 +402,14 @@ export function ImplementationStatus({ step }: Props) {
       subtitle="Delivered capabilities are separated from production-hardening gaps."
     >
       <Reveal step={step} at={1} className="grid grid-cols-3 gap-3">
-        <Card title="CV evidence pipeline" detail="Validated uploads, durable parsing, candidate confirmation, cited claims, and persisted evidence chunks." icon={<CheckCircle2 size={18} />} tone="teal" meta="Implemented" />
-        <Card title="Evidence assessment" detail="Requirement-by-requirement evaluation, deterministic alignment score, and persisted reviewable output." icon={<BrainCircuit size={18} />} tone="teal" meta="Implemented" />
-        <Card title="Durable AI runtime" detail="AiWorkItem state, queue delivery, worker retries, and reconciliation keep inference off the request path." icon={<RefreshCcw size={18} />} tone="teal" meta="Implemented" />
+        <Card title="Digitization pipeline" detail="Multiple digitized cognitive tasks implemented; prototype tested with 25+ users at 90% completion rate." icon={<CheckCircle2 size={18} />} tone="teal" meta="Implemented" />
+        <Card title="AI-assisted scoring" detail="Rule-based and AI-assisted scoring, normative comparison, and persisted domain subscores." icon={<BrainCircuit size={18} />} tone="teal" meta="Implemented" />
+        <Card title="Clinical validation" detail="IRB approval secured; 1 clinical mentor + 2 collaborating clinicians; 2 datasets (DementiaBank, Dem@Care) accessed." icon={<RefreshCcw size={18} />} tone="teal" meta="Implemented" />
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-3 gap-3 mt-3">
-        <Card title="Recommendation scope" detail="Candidate recommendation visibility needs stricter business and application constraints." icon={<ShieldCheck size={18} />} tone="coral" meta="Hardening" />
-        <Card title="Review policy" detail="Reviewer decisions are stored, but override effects are not yet part of the versioned scoring policy." icon={<UserCheck size={18} />} tone="yellow" meta="Partial" />
-        <Card title="Data governance" detail="Provider retention, consent, PII redaction, and stale-vector lifecycle policy are still to be formalized." icon={<LockKeyhole size={18} />} tone="coral" meta="Hardening" />
+        <Card title="Mongo → Postgres migration" detail="Persistence-dependent AI endpoints still require the approved PostgreSQL migration to run without MongoDB." icon={<ShieldCheck size={18} />} tone="coral" meta="Hardening" />
+        <Card title="HIPAA infrastructure" detail="HIPAA-grade infrastructure and IRB expansion are Q1 roadmap items, not yet complete." icon={<UserCheck size={18} />} tone="yellow" meta="Partial" />
+        <Card title="EHR integration" detail="Reimbursement and EHR integration pathways are scoped, not yet built." icon={<LockKeyhole size={18} />} tone="coral" meta="Hardening" />
       </Reveal>
       <Reveal step={step} at={3} className="rounded-xl bg-[#F8FAFC] border border-[var(--border)] p-4 mt-3">
         <p className="text-sm font-black text-px-navy">This distinction keeps the technical defense accurate: a working capability is not presented as a completed production assurance.</p>
@@ -425,23 +423,23 @@ export function BackgroundProcessing({ step }: Props) {
     <EngineeringSlide
       title="Background"
       accent="Processing"
-      subtitle="PostgreSQL owns work state; BullMQ sends execution to the worker."
+      subtitle="MongoDB owns phase state; the deterministic cache and model router handle retries."
     >
       <Reveal step={step} at={1}>
         <Flow
           items={[
-            { label: 'AiWorkItem', sub: 'PostgreSQL state', icon: <Database size={17} />, tone: 'navy' },
-            { label: 'Dispatch', sub: 'queue message', icon: <RefreshCcw size={17} />, tone: 'teal' },
-            { label: 'Worker', sub: 'claim + execute', icon: <Cpu size={17} />, tone: 'yellow' },
+            { label: 'Phase run', sub: 'MongoDB audit row', icon: <Database size={17} />, tone: 'navy' },
+            { label: 'Dispatch', sub: 'LangGraph phase transition', icon: <RefreshCcw size={17} />, tone: 'teal' },
+            { label: 'Model router', sub: 'select provider by phase', icon: <Cpu size={17} />, tone: 'yellow' },
             { label: 'FastAPI', sub: 'inference', icon: <BrainCircuit size={17} />, tone: 'coral' },
             { label: 'Persist', sub: 'result + status', icon: <ShieldCheck size={17} />, tone: 'navy' },
           ]}
         />
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-3 gap-3 mt-3">
-        <Card title="PostgreSQL controls retries" detail="Worker attempts and availability are persisted; BullMQ jobs use one delivery attempt." tone="navy" />
-        <Card title="Reconciliation protects delivery" detail="The worker checks stale queued or pending work on start and every 30 seconds." tone="teal" />
-        <Card title="Failure is explicit" detail="Work, generated content, and assessments can enter a failed state after configured retries." tone="yellow" />
+        <Card title="MongoDB controls phase state" detail="EngineRepository writes a phase_runs audit row for every phase execution." tone="navy" />
+        <Card title="Deterministic cache avoids rework" detail="Redis cache is keyed on phase_id + input_hash + prompt_version; invalidated on prompt version bump." tone="teal" />
+        <Card title="Failure is explicit" detail="Model router retries transient provider failures before surfacing an explicit error state." tone="yellow" />
       </Reveal>
       <Reveal step={step} at={3} className="mt-3"><Pill tone="coral">No dedicated dead-letter queue is implemented</Pill></Reveal>
     </EngineeringSlide>
@@ -451,20 +449,20 @@ export function BackgroundProcessing({ step }: Props) {
 export function SecurityArchitecture({ step }: Props) {
   const controls = [
     ['JWT', 'Authenticated API access', <KeyRound size={17} />],
-    ['Membership', 'Active tenant membership in protected flows', <UserCheck size={17} />],
-    ['businessId', 'Tenant-scoped domain records', <BriefcaseBusiness size={17} />],
-    ['Rate limits', 'Public CV and FastAPI request throttling', <Gauge size={17} />],
-    ['File gates', 'Size, MIME, extension, and signature checks', <FileText size={17} />],
+    ['CSRF Guard', 'Safe-method enforcement on state-changing routes', <UserCheck size={17} />],
+    ['institutionId', 'Institution-scoped domain records', <BriefcaseBusiness size={17} />],
+    ['Rate limits', 'Public patient-session and FastAPI request throttling', <Gauge size={17} />],
+    ['Forbidden vocab guard', 'Blocks non-clinical language from patient-facing text', <FileText size={17} />],
     ['Service secret', 'FastAPI internal-call authentication', <ShieldCheck size={17} />],
-    ['Provider PII', 'Raw CV content is sent for inference', <LockKeyhole size={17} />],
-    ['Visibility gap', 'Candidate recommendation access needs remediation', <CheckCircle2 size={17} />],
+    ['Provider PII', 'Patient response content is sent for inference', <LockKeyhole size={17} />],
+    ['HIPAA gap', 'HIPAA-grade infrastructure is a Q1 roadmap item, not yet complete', <CheckCircle2 size={17} />],
   ] as const
 
   return (
     <EngineeringSlide
       title="Security"
       accent="Architecture"
-      subtitle="Identity, tenant, file, and service controls — with known gaps explicit."
+      subtitle="Identity, institution, safety, and service controls — with known gaps explicit."
     >
       <div className="grid grid-cols-4 gap-3">
         {controls.map(([title, detail, icon], index) => (
@@ -483,39 +481,38 @@ export function SecurityArchitecture({ step }: Props) {
 export function DatabaseDesign({ step }: Props) {
   return (
     <EngineeringSlide
-      title="AI Data"
+      title="Patient Data"
       accent="Model"
-      subtitle="PostgreSQL stores the evidence trail; pgvector supports retrieval, not decisions."
+      subtitle="PostgreSQL owns institutional records; MongoDB stores the session and scoring trail."
     >
       <Reveal step={step} at={1} className="flex flex-col gap-3">
         <div>
-          <p className="text-xs font-bold uppercase tracking-wider text-px-navy mb-2">Candidate evidence path</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-px-navy mb-2">Test digitization path</p>
           <Flow
             items={[
-              { label: 'ResumeParse', sub: 'raw parse state', icon: <FileText size={17} />, tone: 'gray' },
-              { label: 'resumeParsed', sub: 'confirmed profile', icon: <UserCheck size={17} />, tone: 'navy' },
-              { label: 'Evidence claim', sub: 'source-cited fact', icon: <ShieldCheck size={17} />, tone: 'coral' },
-              { label: 'Evidence chunk', sub: 'retrieval unit', icon: <Layers3 size={17} />, tone: 'teal' },
-              { label: 'vector(768)', sub: 'pgvector support', icon: <Search size={17} />, tone: 'yellow' },
+              { label: 'AtomicItem', sub: 'smallest scorable unit', icon: <FileText size={17} />, tone: 'gray' },
+              { label: 'ExtractionBlock', sub: 'confirmed section', icon: <UserCheck size={17} />, tone: 'navy' },
+              { label: 'DraftTestSpec', sub: 'assembled test', icon: <ShieldCheck size={17} />, tone: 'coral' },
+              { label: 'Published test', sub: 'clinician-approved', icon: <Layers3 size={17} />, tone: 'teal' },
             ]}
           />
         </div>
         <div>
-          <p className="text-xs font-bold uppercase tracking-wider text-px-navy mb-2">Assessment path</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-px-navy mb-2">Patient session path</p>
           <Flow
             items={[
-              { label: 'Requirement definition', sub: 'job criteria', icon: <BriefcaseBusiness size={17} />, tone: 'gray' },
-              { label: 'AiWorkItem', sub: 'durable request', icon: <RefreshCcw size={17} />, tone: 'navy' },
-              { label: 'EvidenceAssessment', sub: 'input snapshot + score', icon: <Database size={17} />, tone: 'teal' },
-              { label: 'RequirementEvaluation', sub: 'state + citation', icon: <CheckCircle2 size={17} />, tone: 'coral' },
+              { label: 'Consent + demographics', sub: 'intake router', icon: <BriefcaseBusiness size={17} />, tone: 'gray' },
+              { label: 'Session', sub: 'MongoDB engine session', icon: <RefreshCcw size={17} />, tone: 'navy' },
+              { label: 'Item response', sub: 'per-item stored answer', icon: <Database size={17} />, tone: 'teal' },
+              { label: 'Domain subscore', sub: 'scored + normed', icon: <CheckCircle2 size={17} />, tone: 'coral' },
             ]}
           />
         </div>
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-3 gap-3 mt-3">
-        <Card title="Authoritative records" detail="PostgreSQL owns workflow state, candidate facts, assessment snapshots, and retries." icon={<Database size={18} />} tone="navy" />
-        <Card title="Bounded retrieval" detail="Vectors belong to candidate evidence chunks. No whole-candidate embedding drives the final score." icon={<Search size={18} />} tone="teal" />
-        <Card title="Known lifecycle work" detail="Stale chunk cleanup and an ANN vector index are roadmap items, not claimed as complete." icon={<Table2 size={18} />} tone="yellow" />
+        <Card title="Authoritative records" detail="PostgreSQL owns institution, auth, and plan state; MongoDB holds engine sessions and phase-run audit rows." icon={<Database size={18} />} tone="navy" />
+        <Card title="Deterministic cache" detail="Redis caches phase outputs keyed on phase + input hash + prompt version — not authoritative state." icon={<Search size={18} />} tone="teal" />
+        <Card title="Known migration work" detail="Persistence-dependent AI endpoints still require the approved Mongo → Postgres migration to run standalone." icon={<Table2 size={18} />} tone="yellow" />
       </Reveal>
     </EngineeringSlide>
   )
@@ -532,16 +529,16 @@ export function VerificationEvidence({ step }: Props) {
         <MiniTable
           headers={['Verification layer', 'Latest evidence', 'Scope']}
           rows={[
-            ['FastAPI service', '18 Python tests passed locally', 'CV parsing, provider routing, sanitization, and website-profile helpers'],
-            ['Platform API', 'Unit, API E2E, and Playwright workflows are configured', 'Platform behavior and critical recruiting journeys'],
-            ['Delivery pipeline', 'GitHub Actions launch-readiness workflow', 'Install, typecheck, build, tests, API E2E, and browser E2E'],
+            ['FastAPI AI service', 'Adversarial test suite + eval harness against fixtures', 'Digitization pipeline, scoring, and adaptation resilience'],
+            ['NestJS API', 'Unit and E2E test suites configured', 'Institution, auth, and plan workflows'],
+            ['Delivery pipeline', 'Per-app CI workflows for all four Wayloom applications', 'Install, typecheck, build, and test on every push'],
           ]}
         />
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-3 gap-3 mt-3">
-        <Card title="Verified behavior" detail="Provider selection, parsing safeguards, and bounded service behavior have executable tests." icon={<CheckCircle2 size={18} />} tone="teal" />
-        <Card title="Coverage to strengthen" detail="Add direct tests for EvidenceMatchingService and the AI worker, including thresholds and retry transitions." icon={<Gauge size={18} />} tone="yellow" />
-        <Card title="Before defense" detail="Repair the stale CandidatesPublic unit-test setup after the RecommendationService dependency was added." icon={<Braces size={18} />} tone="coral" />
+        <Card title="Verified behavior" detail="Adversarial cases, fixture-based scoring evaluation, and golden-case prompt evaluation have executable tests." icon={<CheckCircle2 size={18} />} tone="teal" />
+        <Card title="Coverage to strengthen" detail="Add direct tests for the Mongo → Postgres migration path and clinician-review override flow." icon={<Gauge size={18} />} tone="yellow" />
+        <Card title="Before defense" detail="Confirm the deterministic cache invalidates correctly on prompt-version bumps across all phases." icon={<Braces size={18} />} tone="coral" />
       </Reveal>
       <Reveal step={step} at={3} className="rounded-xl bg-[#FFFBEB] border border-[rgba(254,200,73,0.34)] p-4 mt-3">
         <p className="text-sm font-black text-px-navy">No model-accuracy, latency, throughput, or SLA value is claimed until it is measured on a controlled evaluation sample.</p>
@@ -555,24 +552,24 @@ export function AIModelsRouting({ step }: Props) {
     <EngineeringSlide
       title="AI Models"
       accent="by Use Case"
-      subtitle="Gemini extracts or classifies evidence; deterministic backend rules calculate the final score."
+      subtitle="Gemini and Groq handle inference by phase; deterministic rules and normative data anchor the score."
     >
       <Reveal step={step} at={1}>
         <MiniTable
           headers={['Use case', 'Technology', 'Role']}
           rows={[
-            ['CV parsing', 'Gemini 3.5 Flash', 'Strict structured résumé JSON'],
-            ['Evidence classification', 'Gemini 3.5 Flash', 'Classify supplied citations only'],
-            ['Embeddings', 'gemini-embedding-001', '768D semantic retrieval with pgvector'],
-            ['OCR fallback', 'Google Vision OCR', 'Recover text from poor PDFs'],
-            ['Final score', 'NestJS + PostgreSQL', 'Deterministic 0–100 calculation'],
+            ['Document layout & OCR', 'Gemini Vision', 'Page understanding, block detection'],
+            ['Item scoring', 'Gemini Vision', 'Score complex/image-based responses'],
+            ['Translation & adaptation', 'Groq', 'Cultural & linguistic adaptation, back-translation'],
+            ['Clinician report', 'Gemini', 'Domain-level performance summary'],
+            ['Model routing', 'Model Router', 'Per-phase provider selection & fallback'],
           ]}
         />
       </Reveal>
       <Reveal step={step} at={2} className="flex flex-wrap gap-2 mt-3">
-        <Pill>Gemini-only model path</Pill>
+        <Pill>Multi-provider routing</Pill>
         <Pill tone="navy">FastAPI isolates inference</Pill>
-        <Pill tone="coral">LLMs do not rank candidates</Pill>
+        <Pill tone="coral">AI does not replace the clinician's rubric</Pill>
       </Reveal>
     </EngineeringSlide>
   )
@@ -580,19 +577,19 @@ export function AIModelsRouting({ step }: Props) {
 
 export function PerformanceOptimizations({ step }: Props) {
   const optimizations = [
-    ['Redis cache', 'Bounded parse, embedding, and selected-generation reuse; never the source of truth.', <Database size={17} />],
-    ['Durable worker', 'Slow inference happens outside HTTP requests with task-specific retry policies.', <RefreshCcw size={17} />],
-    ['Hybrid job search', 'PostgreSQL full-text search merges with pgvector semantic results.', <Search size={17} />],
-    ['Chunk retrieval', 'Evidence retrieval is constrained to the candidate and returns only a small cited set.', <FileText size={17} />],
-    ['Provider retries', 'The inference client retries transient provider/network failures.', <Zap size={17} />],
-    ['Graceful search', 'If query embedding fails, public job search returns keyword results with degraded status.', <Cpu size={17} />],
+    ['Deterministic cache', 'Redis reuse of phase outputs; never the source of truth.', <Database size={17} />],
+    ['Phase pipeline', 'Slow inference is split into cacheable, retryable phases outside the request path.', <RefreshCcw size={17} />],
+    ['Bounded scoring', 'AI scoring is called only for items whose rubric requires judgment.', <Search size={17} />],
+    ['Adversarial test suite', 'Engine resilience validated against edge-case fixtures before rollout.', <FileText size={17} />],
+    ['Provider retries', 'The model router retries transient provider/network failures across Gemini and Groq.', <Zap size={17} />],
+    ['Graceful degradation', 'A deterministic fallback report generates when the LLM provider is unavailable.', <Cpu size={17} />],
   ] as const
 
   return (
     <EngineeringSlide
       title="Performance"
       accent="Optimizations"
-      subtitle="Bounded retrieval, cache reuse, and durable work reduce synchronous AI latency."
+      subtitle="Deterministic caching, phased execution, and bounded AI calls reduce latency and cost."
     >
       <div className="grid grid-cols-3 gap-3">
         {optimizations.map(([title, detail, icon], index) => (
@@ -602,7 +599,7 @@ export function PerformanceOptimizations({ step }: Props) {
         ))}
       </div>
       <Reveal step={step} at={4} className="rounded-xl bg-[#FFFBEB] border border-[rgba(254,200,73,0.34)] p-4 mt-3">
-        <p className="text-lg font-black text-px-navy">Known limit: pgvector is enabled, but the baseline migration does not create an ANN vector index.</p>
+        <p className="text-lg font-black text-px-navy">Known limit: the Mongo → Postgres migration is not yet complete, so persistence-dependent AI endpoints still depend on MongoDB.</p>
       </Reveal>
     </EngineeringSlide>
   )
@@ -619,12 +616,12 @@ export function TechnicalChallenges({ step }: Props) {
         <MiniTable
           headers={['Challenge', 'Solution', 'Outcome']}
           rows={[
-            ['AI latency', 'Durable work + worker retries', 'Responsive request path'],
-            ['CV reliability', 'File gates + quality gate + optional OCR', 'READY or NEEDS_REVIEW state'],
-            ['Grounding', 'Citation-bound evidence classification', 'No free-form evidence invention'],
-            ['Explainability', 'Snapshots, evaluations, and citations', 'Auditable assessment trail'],
-            ['Provider outage', 'Retries and explicit failure states', 'Recoverable, observable processing'],
-            ['Known access gap', 'Candidate recommendation visibility needs remediation', 'Documented before production'],
+            ['AI latency', 'Phased pipeline + deterministic cache + retries', 'Responsive digitization path'],
+            ['Document quality', 'Vision layout + validator/repair nodes', 'Publishable spec or flagged for review'],
+            ['Cultural validity', 'Cultural & linguistic adaptation + back-translation', 'Clinically valid across language/culture'],
+            ['Scoring safety', 'Forbidden-vocab guard on patient-facing text', 'No unsafe or non-clinical language reaches patients'],
+            ['Provider outage', 'Model router retries + deterministic report fallback', 'Recoverable, observable processing'],
+            ['Known migration gap', 'Mongo → Postgres migration in progress', 'Documented before production'],
           ]}
         />
       </Reveal>
@@ -634,18 +631,18 @@ export function TechnicalChallenges({ step }: Props) {
 
 export function FutureTechnicalRoadmap({ step }: Props) {
   const nearTerm = [
-    ['Access control', 'Enforce active membership for all AI-generated content and correct recommendation visibility.', <ShieldCheck size={17} />],
-    ['Atomic delivery', 'Commit application and assessment work atomically with a transactional outbox pattern.', <Database size={17} />],
-    ['Reviewer policy', 'Make overrides affect an explicit versioned assessment policy and explainability.', <UserCheck size={17} />],
+    ['HIPAA infrastructure', 'Q1: build HIPAA-grade infrastructure ahead of clinical pilots.', <ShieldCheck size={17} />],
+    ['IRB expansion', 'Q1: expand IRB approval alongside engine finalization.', <Database size={17} />],
+    ['Pilot launch', 'Q2: launch pilots, collect first patient data, close 3 LOIs.', <UserCheck size={17} />],
   ] as const
   const midTerm = [
-    ['FinOps coverage', 'Route every chargeable AI call through operations and credit ledger reconciliation.', <Gauge size={17} />],
-    ['Prompt controls', 'Centralize prompt construction and test every user-controlled input surface.', <Braces size={17} />],
-    ['Vector lifecycle', 'Add stale-chunk cleanup and measure before introducing an ANN vector index.', <Search size={17} />],
+    ['Peer review submission', 'Q3: submit clinical validation results for peer review.', <Gauge size={17} />],
+    ['Pilot expansion', 'Q3: expand pilot sites and file a patent.', <Braces size={17} />],
+    ['Mongo → Postgres migration', 'Complete the approved persistence migration for standalone AI endpoints.', <Search size={17} />],
   ] as const
   const longTerm = [
-    ['Governed expansion', 'Expose only supported FastAPI helpers through tenant-authorized NestJS contracts.', <BrainCircuit size={17} />],
-    ['Data governance', 'Define provider retention, PII classification, consent, and operational redaction.', <LockKeyhole size={17} />],
+    ['Scale readiness', 'Q4: license agreements, deployment-ready platform, seed raise.', <BrainCircuit size={17} />],
+    ['EHR integration pathway', 'Q4: scope EHR integration and Medicare/insurance reimbursement pathways.', <LockKeyhole size={17} />],
   ] as const
 
   return (

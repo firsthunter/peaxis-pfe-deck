@@ -37,7 +37,7 @@ const ROOT       = resolve(__dirname, '..')
 const PORT       = Number(process.env.EXPORT_PORT ?? 5178)
 const BASE_URL   = process.env.EXPORT_URL ?? `http://localhost:${PORT}`
 const EXPORT_URL = BASE_URL.includes('?') ? `${BASE_URL}&export=true` : `${BASE_URL}/?export=true`
-const OUTPUT_PDF = process.env.OUTPUT_PATH ?? resolve(ROOT, 'PEAXIS-PFE-Defense.pdf')
+const OUTPUT_PDF = process.env.OUTPUT_PATH ?? resolve(ROOT, 'Wayloom-PFE-Defense.pdf')
 
 // ─── Slide dimensions (must match ExportView.tsx + CSS) ──────────────────────
 const SLIDE_W = 1280

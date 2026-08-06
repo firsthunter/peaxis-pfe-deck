@@ -7,8 +7,8 @@ interface LogoProps {
 export default function Logo({ height = 32, variant = 'color' }: LogoProps) {
   return (
     <img
-      src="/peaxis-logo.png"
-      alt="PEAXIS"
+      src="/wayloom-logo.png"
+      alt="Wayloom.AI"
       height={height}
       style={{
         height,

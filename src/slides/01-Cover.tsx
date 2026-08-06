@@ -36,11 +36,11 @@ export default function Cover({ step: _step }: Props) {
           variants={cinemaEntrance}
           className="text-6xl font-extrabold leading-[1.06] tracking-tight"
         >
-          <GradientText variant="teal">PEAXIS</GradientText>
+          <GradientText variant="brand">Wayloom.AI</GradientText>
           <br />
-          <span className="text-px-navy">A Modular AI-Powered</span>
+          <span className="text-px-navy">An AI-Powered</span>
           <br />
-          <span className="text-px-navy">Hiring Operating System</span>
+          <span className="text-px-navy">Cognitive Testing Platform</span>
         </motion.h1>
 
         {/* Divider */}
@@ -52,7 +52,7 @@ export default function Cover({ step: _step }: Props) {
 
         {/* Presenter */}
         <motion.div variants={fadeUp} className="flex flex-col items-center gap-1">
-          <p className="text-lg font-bold text-px-navy">BIBANI Mohamed Habib Allah</p>
+          <p className="text-lg font-bold text-px-navy">Ben Dhaou Mohamed Iheb</p>
           <p className="text-xs text-px-muted mt-0.5">
             École Supérieure Privée d'Ingénierie et de Technologie — ESPRIT
           </p>
@@ -65,7 +65,7 @@ export default function Cover({ step: _step }: Props) {
         >
           <div className="flex flex-col items-center gap-0.5">
             <span className="text-xs font-bold text-px-teal uppercase tracking-widest">Academic Supervisor</span>
-            <span className="text-sm font-semibold text-px-navy">Mme Olfa Mannai</span>
+            <span className="text-sm font-semibold text-px-navy">Mme Saoussen Lakhdhar</span>
           </div>
           <div className="w-px h-8 bg-gray-200" />
           <div className="flex flex-col items-center gap-0.5">

@@ -7,29 +7,29 @@ interface Props { step: number }
 
 const capabilities = [
   {
-    name: 'Evidence Assessment',
-    desc: 'Requirements are evaluated against cited candidate evidence with a reviewable outcome',
+    name: 'Document Digitization',
+    desc: 'Paper tests are parsed into structured, scorable items with a reviewable outcome',
     color: '#00B8B3', bg: '#E6FAF9',
   },
   {
-    name: 'CV Parsing',
-    desc: 'A durable worker requests a structured profile from a configured inference provider',
+    name: 'AI-Assisted Scoring',
+    desc: 'Complex responses are scored by Gemini Vision against the clinician\'s rubric',
     color: '#374151', bg: '#F3F4F6',
   },
   {
-    name: 'Recruiter Artifacts',
-    desc: 'Summaries, interview questions, JD drafts, and outreach remain reviewable before use',
+    name: 'Cultural & Linguistic Adaptation',
+    desc: 'Items are translated, culturally adapted, and back-translated for clinical validity',
     color: '#374151', bg: '#F9FAFB',
   },
   {
-    name: 'JD Generator',
-    desc: 'Job-description draft and structured requirements with recruiter confirmation',
+    name: 'Clinician Report Generator',
+    desc: 'Domain-level performance summary with a deterministic fallback if the LLM is unavailable',
     color: '#7C3AED', bg: '#F5F3FF',
   },
 ]
 
-const evidence = ['Resume project: React', 'Experience: TypeScript', 'Portfolio: PostgreSQL']
-const verification = ['GraphQL needs verification', 'Work authorization pending']
+const evidence = ['Section: Orientation', 'Section: Memory Recall', 'Section: Attention']
+const verification = ['Drawing item needs review', 'Time limit inferred']
 
 export default function DemoAI({ step }: Props) {
   return (
@@ -45,7 +45,7 @@ export default function DemoAI({ step }: Props) {
             <GradientText variant="teal">AI Brain</GradientText> — Intelligence in Action
           </motion.h2>
           <motion.p variants={fadeUp} className="text-xs text-px-muted max-w-xl">
-            Explainable assistance at every decision point — evidence is visible and the recruiter remains in control.
+            AI assists at every phase — the digitized test is visible and the clinician remains in control.
           </motion.p>
         </motion.div>
 
@@ -99,23 +99,23 @@ export default function DemoAI({ step }: Props) {
                       <path d="M6 1l1.3 2.6L10 4.3l-2 1.9.5 2.8L6 7.6 3.5 9l.5-2.8L2 4.3l2.7-.7L6 1z" fill="#00B8B3" />
                     </svg>
                   </div>
-                  <span className="text-xs font-bold text-px-navy">Evidence Assessment — Review Output</span>
+                  <span className="text-xs font-bold text-px-navy">Document Digitization — Review Output</span>
                 </div>
 
                 <div className="flex flex-col gap-3 p-4 flex-1">
                   <div className="flex flex-col gap-1.5">
                     <span className="text-xs font-bold uppercase tracking-widest text-px-muted">Input</span>
                     <div className="flex gap-2">
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#E6FAF9] text-[#009E9A] border border-[rgba(0,184,179,0.25)]">CV (PDF)</span>
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#E6FAF9] text-[#009E9A] border border-[rgba(0,184,179,0.25)]">Test (PDF)</span>
                       <span className="text-xs text-px-muted flex items-center">+</span>
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#F3F4F6] text-[#374151] border border-[#E5E7EB]">Job Description</span>
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#F3F4F6] text-[#374151] border border-[#E5E7EB]">Scoring Rubric</span>
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-1.5">
                     <span className="text-xs font-bold uppercase tracking-widest text-px-muted">Engine</span>
                     <div className="flex flex-wrap gap-1.5">
-                      {['Parse CV', 'Extract evidence', 'Evaluate requirements', 'Recruiter review'].map((e, i) => (
+                      {['Ingest', 'Layout & segment', 'Extract items', 'Clinician review'].map((e, i) => (
                         <span key={e} className="flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-[#E6FAF9] text-[#009E9A] border border-[rgba(0,184,179,0.2)]">
                           {i > 0 && <svg width="6" height="6" viewBox="0 0 6 6" fill="none"><path d="M1 3h4M3 1l2 2-2 2" stroke="#009E9A" strokeWidth="1" strokeLinecap="round" /></svg>}
                           {e}
@@ -127,8 +127,8 @@ export default function DemoAI({ step }: Props) {
                   <div className="flex flex-col gap-2 p-3 rounded-xl bg-white border border-[rgba(0,184,179,0.2)]">
                     <span className="text-xs font-bold uppercase tracking-widest text-px-muted">Output</span>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-2xl font-extrabold text-px-navy">3</span>
-                      <span className="text-sm text-px-muted">requirements supported</span>
+                      <span className="text-2xl font-extrabold text-px-navy">12</span>
+                      <span className="text-sm text-px-muted">items digitized</span>
                       <span className="ml-auto text-xs font-bold bg-[#E6FAF9] text-[#009E9A] px-2 py-0.5 rounded-full border border-[rgba(0,184,179,0.2)]">Ready for review</span>
                     </div>
                     <div className="w-full h-1.5 bg-gray-100 rounded-full">
@@ -143,7 +143,7 @@ export default function DemoAI({ step }: Props) {
                       ))}
                     </div>
                     <p className="text-xs text-px-muted italic leading-snug mt-1">
-                      "The recruiter can inspect the cited claims, confirm the evidence, or record an override."
+                      "The clinician can inspect each digitized item, confirm scoring rules, or edit before publishing."
                     </p>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function DemoAI({ step }: Props) {
               <div className="w-1 h-5 rounded-full bg-[#00B8B3] flex-shrink-0" />
               <p className="text-xs text-px-muted">
                 <strong className="text-px-navy">Explainability principle:</strong>{' '}
-                Every assessment exposes — requirement · cited evidence · evaluation · verification state · recruiter review. No autonomous rejection.
+                Every digitized item exposes — source page · extracted content · scoring rule · validation state · clinician review. No autonomous publishing.
               </p>
             </motion.div>
           )}

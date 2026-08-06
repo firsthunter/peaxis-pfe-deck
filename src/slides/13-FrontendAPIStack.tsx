@@ -9,23 +9,23 @@ interface Props { step: number }
 const layers = [
   {
     name: 'Frontend',
-    tech: ['Next.js 16', 'React', 'Tailwind', 'TypeScript'],
-    detail: 'Specialized Core, Hire, Jobs, Admin, and Landing applications share React/TypeScript patterns',
+    tech: ['Next.js', 'React', 'Tailwind', 'TypeScript'],
+    detail: 'Root, institution, clinician, and patient-session apps share React/TypeScript patterns',
   },
   {
     name: 'API',
     tech: ['NestJS', 'Prisma', 'JWT', 'TypeScript'],
-    detail: 'NestJS + Prisma: domain modules, policy enforcement, and transactional platform data',
+    detail: 'NestJS + Prisma: institutions, auth, roles, plans, and transactional platform data',
   },
   {
     name: 'AI Service',
-    tech: ['FastAPI', 'Gemini / Azure', 'Python', 'Redis'],
-    detail: 'Stateless inference for parsing, classification, embeddings, and structured generation',
+    tech: ['FastAPI', 'Gemini / Groq', 'Python', 'LangGraph'],
+    detail: 'Stateless inference for digitization, scoring, and cultural/language adaptation',
   },
   {
     name: 'Database',
-    tech: ['PostgreSQL', 'pgvector', 'Redis', 'BullMQ'],
-    detail: 'Authoritative data + pgvector retrieval, Redis, and one durable BullMQ queue',
+    tech: ['PostgreSQL', 'MongoDB', 'Redis'],
+    detail: 'Postgres for institutional data, Mongo for engine sessions, Redis for deterministic caching',
   },
 ]
 
@@ -43,7 +43,7 @@ export default function FrontendAPIStack({ step }: Props) {
             Tech <GradientText variant="teal">Stack</GradientText> — Four Layers
           </motion.h2>
           <motion.p variants={fadeUp} className="text-sm text-px-muted max-w-2xl">
-            Implemented application, platform, inference, and data boundaries.
+            Four applications (web, API, execution) and one AI engine across the implemented stack.
           </motion.p>
         </motion.div>
 
@@ -80,9 +80,9 @@ export default function FrontendAPIStack({ step }: Props) {
               className="grid grid-cols-3 gap-3"
             >
               {[
-                { label: 'Tenant controls', value: 'Business-scoped domain records with explicit remediation items' },
-                { label: 'Async processing', value: 'BullMQ + background workers' },
-                { label: 'Retrieval', value: 'pgvector supports job discovery and cited evidence' },
+                { label: 'Tenant controls', value: 'Institution-scoped records with role and plan guards' },
+                { label: 'Deterministic caching', value: 'Redis cache keyed on phase + input hash + prompt version' },
+                { label: 'Model routing', value: 'Per-phase routing across Gemini and Groq providers' },
               ].map((p) => (
                 <div key={p.label} className="p-3 rounded-xl bg-[#E6FAF9] border border-[rgba(0,184,179,0.2)]">
                   <p className="text-xs font-bold text-px-teal uppercase tracking-wider">{p.label}</p>

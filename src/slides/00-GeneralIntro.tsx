@@ -9,22 +9,22 @@ interface Props { step: number }
 const forces = [
   {
     icon: <TrendingUp size={20} />,
-    title: 'Application volume',
+    title: 'Aging population',
     color: '#00B8B3',
   },
   {
     icon: <Clock size={20} />,
-    title: 'Recruiter workload',
+    title: 'Clinical overload',
     color: '#001027',
   },
   {
     icon: <Users size={20} />,
-    title: 'Candidate expectations',
+    title: 'Caregiver expectations',
     color: '#6B7280',
   },
   {
     icon: <Bot size={20} />,
-    title: 'AI adoption in HR',
+    title: 'AI adoption in healthcare',
     color: '#374151',
   },
 ]
@@ -45,10 +45,10 @@ export default function GeneralIntro({ step }: Props) {
         {/* Header */}
         <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-1">
           <motion.div variants={fadeUp}>
-            <SectionTag section="Recruitment Context" number="3" />
+            <SectionTag section="Clinical Context" number="3" />
           </motion.div>
           <motion.h2 variants={fadeUp} className="text-5xl font-extrabold leading-tight tracking-tight text-px-navy">
-            Recruitment in the <GradientText variant="teal">Digital Era</GradientText>
+            Cognitive Health in the <GradientText variant="teal">Digital Era</GradientText>
           </motion.h2>
         </motion.div>
 

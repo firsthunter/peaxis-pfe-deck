@@ -30,7 +30,7 @@ export default function ScreenshotFrame({ src, alt, caption, placeholder, classN
           <div className="w-2.5 h-2.5 rounded-full bg-[#FEC849]" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#34D399]" />
           <div className="flex-1 mx-2 h-4 rounded bg-gray-200 flex items-center px-2">
-            <span className="text-xs text-gray-400 font-mono truncate">peaxis.app</span>
+            <span className="text-xs text-gray-400 font-mono truncate">portal.wayloom-ai.com</span>
           </div>
         </div>
 

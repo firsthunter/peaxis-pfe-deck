@@ -1,50 +1,50 @@
 /**
- * CandidatePortalMockup — PEAXIS Jobs candidate portal
- * High-quality JSX recreation with browser chrome + peaxis.com URL
+ * PatientPortalMockup — Wayloom patient session portal
+ * High-quality JSX recreation with browser chrome + portal.wayloom-ai.com URL
  */
 
 const jobs = [
   {
-    title: 'Senior React Developer',
-    company: 'TechCorp Tunisia',
-    location: 'Tunis, TN',
-    type: 'Full-time',
-    match: 91,
-    posted: '2 days ago',
-    tags: ['React', 'TypeScript', 'Node.js'],
-    salary: '3,500–4,500 TND',
+    title: 'Memory & Orientation Screening',
+    company: 'Tunis Memory Clinic',
+    location: 'In-clinic',
+    type: '10–15 min',
+    match: 'Not started',
+    posted: 'Assigned 2 days ago',
+    tags: ['Memory', 'Orientation', 'Language'],
+    salary: 'Adapted: Arabic, TN',
     color: '#00B8B3',
   },
   {
-    title: 'Python AI Engineer',
-    company: 'AISolutions',
-    location: 'Remote',
-    type: 'Contract',
-    match: 84,
-    posted: '5 days ago',
-    tags: ['Python', 'FastAPI', 'LLM'],
-    salary: '4,000–5,500 TND',
+    title: 'Digit Span & Attention Task',
+    company: 'Dementia Research Study',
+    location: 'At-home',
+    type: '5–10 min',
+    match: 'In progress',
+    posted: 'Assigned 5 days ago',
+    tags: ['Attention', 'Working Memory'],
+    salary: 'Adapted: French, TN',
     color: 'linear-gradient(135deg,#374151,#4B5563)',
   },
   {
-    title: 'Product Designer',
-    company: 'DesignHub',
-    location: 'Hybrid · Sfax',
-    type: 'Full-time',
-    match: 72,
+    title: 'Verbal Fluency Assessment',
+    company: 'Neurology Dept — CHU',
+    location: 'In-clinic',
+    type: '8 min',
+    match: 'Completed',
     posted: '1 week ago',
-    tags: ['Figma', 'UX', 'Mobile'],
-    salary: '2,800–3,800 TND',
+    tags: ['Fluency', 'Language'],
+    salary: 'Adapted: English',
     color: '#9CA3AF',
   },
 ]
 
-function MatchBadge({ score }: { score: number }) {
-  const c = score >= 85
-    ? { bg: '#E6FAF9', text: '#009E9A', label: 'Strong' }
-    : score >= 70
-    ? { bg: '#F3F4F6', text: '#374151', label: 'Good' }
-    : { bg: '#F3F4F6', text: '#6B7280', label: 'Partial' }
+function MatchBadge({ score }: { score: string }) {
+  const c = score === 'Completed'
+    ? { bg: '#E6FAF9', text: '#009E9A' }
+    : score === 'In progress'
+    ? { bg: '#F3F4F6', text: '#374151' }
+    : { bg: '#F3F4F6', text: '#6B7280' }
   return (
     <span
       className="inline-flex items-center gap-0.5 font-bold px-1.5 py-0.5 rounded-full"
@@ -53,7 +53,7 @@ function MatchBadge({ score }: { score: number }) {
       <svg width="7" height="7" viewBox="0 0 12 12" fill="none">
         <path d="M6 1l1.3 2.6L10 4.3l-2 1.9.5 2.8L6 7.6 3.5 9l.5-2.8L2 4.3l2.7-.7L6 1z" fill="currentColor" />
       </svg>
-      {score}% {c.label}
+      {score}
     </span>
   )
 }
@@ -75,7 +75,7 @@ export default function CandidatePortalMockup({ compact = false }: { compact?: b
             <path d="M7 10c0-3.3 1.3-6 3-6s3 2.7 3 6-1.3 6-3 6-3-2.7-3-6z" stroke="#9CA3AF" strokeWidth="1.2" />
             <path d="M1.5 10h17M2.5 6.5h15M2.5 13.5h15" stroke="#9CA3AF" strokeWidth="1.1" />
           </svg>
-          <span style={{ fontSize: 9, color: '#6B7280', fontFamily: 'monospace' }}>jobs.peaxis.com</span>
+          <span style={{ fontSize: 9, color: '#6B7280', fontFamily: 'monospace' }}>portal.wayloom-ai.com</span>
         </div>
       </div>
 
@@ -83,16 +83,16 @@ export default function CandidatePortalMockup({ compact = false }: { compact?: b
       <div className="bg-[#F8FAFC] p-2.5 flex flex-col gap-2">
         {/* App nav */}
         <div className="flex items-center justify-between bg-white rounded-xl border border-[rgba(0,0,0,0.07)] px-3 py-1.5">
-          <img src="/peaxis-logo.png" alt="PEAXIS" style={{ height: 14, width: 'auto' }} />
+          <img src="/wayloom-logo.png" alt="Wayloom" style={{ height: 14, width: 'auto' }} />
           <div className="flex items-center gap-3">
-            {['Jobs', 'Applications', 'Profile'].map((item, i) => (
+            {['Tests', 'History', 'Profile'].map((item, i) => (
               <span key={item} style={{ fontSize: 9, fontWeight: i === 0 ? 700 : 500, color: i === 0 ? '#00B8B3' : '#6B7280' }}>
                 {item}
               </span>
             ))}
           </div>
           <div className="flex items-center gap-1 px-2 py-0.5 rounded-lg text-white" style={{ background: '#00B8B3', fontSize: 8, fontWeight: 700 }}>
-            Sara M.
+            Amina T.
           </div>
         </div>
 
@@ -103,7 +103,7 @@ export default function CandidatePortalMockup({ compact = false }: { compact?: b
               <circle cx="9" cy="9" r="6" stroke="#9CA3AF" strokeWidth="1.8" />
               <path d="M14 14l4 4" stroke="#9CA3AF" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
-            <span style={{ fontSize: f, color: '#9CA3AF' }}>Search roles, companies, skills…</span>
+            <span style={{ fontSize: f, color: '#9CA3AF' }}>Search assigned assessments…</span>
           </div>
           <div className="px-3 py-1.5 rounded-lg font-bold text-white flex-shrink-0" style={{ background: '#00B8B3', fontSize: f }}>
             Search
@@ -113,7 +113,7 @@ export default function CandidatePortalMockup({ compact = false }: { compact?: b
         {/* Filters */}
         <div className="flex gap-1.5 flex-wrap items-center">
           <span style={{ fontSize: 9, color: '#6B7280' }}>Filters:</span>
-          {['Tunisia', 'Remote OK', 'Full-time', 'AI-scored'].map((tag, i) => (
+          {['In-clinic', 'At-home', 'Not started', 'Adapted'].map((tag, i) => (
             <span key={tag} className="px-2 py-0.5 rounded-full font-semibold border" style={{ fontSize: 8, background: i < 2 ? '#E6FAF9' : 'white', color: i < 2 ? '#009E9A' : '#374151', borderColor: i < 2 ? 'rgba(0,184,179,0.3)' : 'rgba(0,0,0,0.1)' }}>
               {tag}
             </span>
@@ -142,7 +142,7 @@ export default function CandidatePortalMockup({ compact = false }: { compact?: b
               <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
                 <MatchBadge score={job.match} />
                 <span style={{ fontSize: 8, color: '#9CA3AF' }}>{job.posted}</span>
-                <div className="text-white px-2 py-0.5 rounded-lg font-bold" style={{ background: '#00B8B3', fontSize: 8 }}>Apply →</div>
+                <div className="text-white px-2 py-0.5 rounded-lg font-bold" style={{ background: '#00B8B3', fontSize: 8 }}>Start →</div>
               </div>
             </div>
           ))}
@@ -158,11 +158,11 @@ export default function CandidatePortalMockup({ compact = false }: { compact?: b
               </svg>
             </div>
             <div>
-              <div style={{ fontSize: 9, fontWeight: 700, color: '#001027' }}>Upload your CV</div>
-              <div style={{ fontSize: 8, color: '#009E9A' }}>PEAXIS AI extracts your profile automatically</div>
+              <div style={{ fontSize: 9, fontWeight: 700, color: '#001027' }}>Complete consent form</div>
+              <div style={{ fontSize: 8, color: '#009E9A' }}>Required before your first assessment</div>
             </div>
           </div>
-          <div className="px-2 py-1 rounded-lg font-bold text-white" style={{ background: '#00B8B3', fontSize: 8 }}>Upload CV</div>
+          <div className="px-2 py-1 rounded-lg font-bold text-white" style={{ background: '#00B8B3', fontSize: 8 }}>Give Consent</div>
         </div>
       </div>
     </div>

@@ -28,15 +28,15 @@ export const SLIDES: SlideConfig[] = [
   // §6 Proposed Solution
   { id: 'solution-overview',   steps: 2, label: 'Overview'       },
   { id: 'peaxis-core',         steps: 3, label: 'Core Platform'  },
-  { id: 'peaxis-hire',         steps: 4, label: 'Hire ATS'       },
-  { id: 'peaxis-jobs',         steps: 4, label: 'Jobs Portal'    },
+  { id: 'peaxis-hire',         steps: 4, label: 'Clinician Suite' },
+  { id: 'peaxis-jobs',         steps: 4, label: 'Patient Portal' },
   // §7 Architecture & Technologies
   { id: 'logical-arch',        steps: 5, label: 'Logical Arch.'  },
   { id: 'physical-arch',       steps: 3, label: 'Physical Arch.' },
   // §8 Engineering Deep Dive
   { id: 'ai-runtime',             steps: 3, label: 'AI Runtime'     },
-  { id: 'cv-parsing',             steps: 3, label: 'CV Parsing'     },
-  { id: 'matching-engine',        steps: 3, label: 'Matching'       },
+  { id: 'cv-parsing',             steps: 3, label: 'Digitization'   },
+  { id: 'matching-engine',        steps: 3, label: 'Scoring Engine' },
   { id: 'matching-algorithm',     steps: 3, label: 'Score Algorithm' },
   { id: 'ai-model-routing',       steps: 2, label: 'AI Models'      },
   { id: 'performance-optimizations', steps: 4, label: 'Performance' },

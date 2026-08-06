@@ -43,8 +43,8 @@ export default function SmallScreenBlocker() {
     >
       {/* Logo */}
       <img
-        src="/peaxis-logo.png"
-        alt="PEAXIS"
+        src="/wayloom-logo.png"
+        alt="Wayloom.AI"
         style={{ height: 40, width: 'auto', filter: 'brightness(0) invert(1)', marginBottom: 8 }}
       />
 
@@ -143,7 +143,7 @@ export default function SmallScreenBlocker() {
           textTransform: 'uppercase',
         }}
       >
-        PEAXIS · Intelligent Hiring. Better Futures.
+        Wayloom.AI · Cognitive Health, Continuously Monitored.
       </p>
     </div>
   )

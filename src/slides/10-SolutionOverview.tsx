@@ -9,18 +9,18 @@ interface Props { step: number }
 const modules = [
   {
     icon: <Settings size={20} />,
-    name: 'PEAXIS Core',
-    sub: 'Business foundation',
+    name: 'Wayloom Core',
+    sub: 'Institution foundation',
   },
   {
     icon: <Users size={20} />,
-    name: 'PEAXIS Hire',
-    sub: 'Recruiter workspace',
+    name: 'Wayloom Clinician Suite',
+    sub: 'Test publishing & scoring review',
   },
   {
     icon: <Building2 size={20} />,
-    name: 'PEAXIS Jobs',
-    sub: 'Candidate portal',
+    name: 'Wayloom Patient Portal',
+    sub: 'Conversational testing & results',
   },
 ]
 
@@ -35,7 +35,7 @@ export default function SolutionOverview({ step }: Props) {
             <SectionTag section="Proposed Solution" number="6" />
           </motion.div>
           <motion.h2 variants={cinemaEntrance} className="text-5xl font-extrabold leading-tight tracking-tight text-px-navy">
-            <GradientText variant="teal">PEAXIS</GradientText> — Modular AI Hiring Operating System
+            <GradientText variant="brand">Wayloom.AI</GradientText> — AI-Powered Cognitive Testing Platform
           </motion.h2>
         </motion.div>
 
@@ -82,9 +82,9 @@ export default function SolutionOverview({ step }: Props) {
               className="grid grid-cols-3 gap-3"
             >
               {[
-                { who: 'Business Admin', uses: 'PEAXIS Core' },
-                { who: 'Recruiter / HR Team', uses: 'PEAXIS Hire' },
-                { who: 'Candidate / Talent', uses: 'PEAXIS Jobs' },
+                { who: 'Institution Admin', uses: 'Wayloom Core' },
+                { who: 'Clinician', uses: 'Wayloom Clinician Suite' },
+                { who: 'Patient / Caregiver', uses: 'Wayloom Patient Portal' },
               ].map((s, i) => (
                 <motion.div
                   key={s.who}

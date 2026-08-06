@@ -18,7 +18,7 @@ export default function ThankYou() {
         </motion.h1>
 
         <motion.div variants={fadeUp} initial="hidden" animate="visible" className="mt-4">
-          <div className="text-xs text-px-muted">PEAXIS — Final Year Project · ESPRIT · 2026</div>
+          <div className="text-xs text-px-muted">Wayloom.AI — Final Year Project · ESPRIT · 2026</div>
         </motion.div>
       </div>
     </div>

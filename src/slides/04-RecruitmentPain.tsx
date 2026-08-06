@@ -8,30 +8,30 @@ import { fadeUp, stagger } from '../lib/animations'
 interface Props { step: number }
 
 const stats = [
-  { value: '42 days', label: 'Average time-to-hire', sub: 'SHRM 2024', color: '#FE595A' },
-  { value: '75%', label: 'Recruiters overloaded', sub: 'LinkedIn Talent Report', color: '#001027' },
-  { value: '60%', label: 'Candidates report no feedback', sub: 'Indeed Survey 2023', color: '#6B7280' },
+  { value: '+6.9M', label: 'Americans 65+ living with dementia', sub: '2024, projected to reach 12M by 2040', color: '#FE595A' },
+  { value: '50%', label: 'Never receive a clinical diagnosis', sub: 'of those affected', color: '#001027' },
+  { value: '2x', label: 'Rates double every 5 years after 65', sub: 'WHO public-health priority', color: '#6B7280' },
 ]
 
 const pains = [
   {
     icon: <Clock size={22} />,
-    title: 'Manual screening',
+    title: 'Paper testing since the 1980s',
     color: '#FE595A',
   },
   {
     icon: <Search size={22} />,
-    title: 'Keyword-based ATS',
+    title: 'Long clinic visits & wait times',
     color: '#001027',
   },
   {
     icon: <AlertTriangle size={22} />,
-    title: 'Inconsistent evaluation',
+    title: 'Months-long waitlists',
     color: '#6B7280',
   },
   {
     icon: <UserX size={22} />,
-    title: 'Candidate experience',
+    title: 'Clinical overload',
     color: '#374151',
   },
 ]
@@ -44,10 +44,10 @@ export default function RecruitmentPain({ step }: Props) {
         {/* Header */}
         <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-2">
           <motion.div variants={fadeUp}>
-            <SectionTag section="Recruitment Context" number="3" />
+            <SectionTag section="Clinical Context" number="3" />
           </motion.div>
           <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-px-navy">
-            Current recruitment <GradientText variant="coral">challenges</GradientText>
+            Dementia is increasing, <GradientText variant="coral">testing isn't</GradientText>
           </motion.h2>
         </motion.div>
 
@@ -116,13 +116,13 @@ export default function RecruitmentPain({ step }: Props) {
               <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#FFF0F0] border border-[rgba(254,89,90,0.2)]">
                 <div className="w-1 h-8 rounded-full flex-shrink-0 bg-[#FE595A]" />
                 <p className="text-sm text-px-navy">
-                  <strong>Cost of a bad hire:</strong> averages <strong>$14.9K</strong>; strong candidates can accept competing offers within days.
+                  <strong>Cost of delay:</strong> half of those affected <strong>never receive a clinical diagnosis</strong> before it's too late to act.
                 </p>
               </div>
               <div className="flex items-center gap-3 px-4 py-3 rounded-xl border" style={{ background: '#F3F4F6', borderColor: 'rgba(0,0,0,0.07)' }}>
                 <div className="w-1 h-8 rounded-full flex-shrink-0 bg-[#6B7280]" />
                 <p className="text-sm text-px-navy">
-                  <strong>Engineering response:</strong> keep screening responsive, make every score reviewable, and keep candidates informed.
+                  <strong>Engineering response:</strong> digitize testing, keep it accessible, and get patients seen faster.
                 </p>
               </div>
             </motion.div>

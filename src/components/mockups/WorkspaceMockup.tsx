@@ -1,15 +1,15 @@
 /**
- * WorkspaceMockup — Full Job Workspace with open candidate drawer
- * Recreated from peaxis-hire/src/components/hire/job-workspace/
- * The "hero" product screenshot that demonstrates the full recruiter UX
- * Includes browser chrome with hire.peaxis.com URL
+ * WorkspaceMockup — Full clinician test workspace with open session drawer
+ * Recreated from Wayloom's clinician suite
+ * The "hero" product screenshot that demonstrates the full clinician UX
+ * Includes browser chrome with portal.wayloom-ai.com URL
  */
 import AIInsightMockup from './AIInsightMockup'
 
 const candidates = [
-  { stage: 'Applied',   name: 'Sara M.',    score: 91, skills: ['React','TypeScript','Node.js'] },
-  { stage: 'Screening', name: 'Ahmed K.',   score: 78, skills: ['Vue.js','JavaScript']         },
-  { stage: 'Interview', name: 'Youssef A.', score: 88, skills: ['NestJS','TypeScript']         },
+  { stage: 'Consented',   name: 'Amina T.',  score: 91, skills: ['Memory','Orientation','Language'] },
+  { stage: 'In Progress', name: 'Karim B.',  score: 78, skills: ['Attention','Fluency']              },
+  { stage: 'Scored',      name: 'Leila S.',  score: 88, skills: ['Executive Function','Memory']      },
 ]
 
 export default function WorkspaceMockup() {
@@ -28,7 +28,7 @@ export default function WorkspaceMockup() {
             <path d="M7 10c0-3.3 1.3-6 3-6s3 2.7 3 6-1.3 6-3 6-3-2.7-3-6z" stroke="#9CA3AF" strokeWidth="1.2" />
             <path d="M1.5 10h17M2.5 6.5h15M2.5 13.5h15" stroke="#9CA3AF" strokeWidth="1.1" />
           </svg>
-          <span style={{ fontSize: 9, color: '#6B7280', fontFamily: 'monospace' }}>hire.peaxis.com/jobs/senior-react-dev</span>
+          <span style={{ fontSize: 9, color: '#6B7280', fontFamily: 'monospace' }}>portal.wayloom-ai.com/tests/memory-orientation</span>
         </div>
         <div className="flex items-center gap-1">
           {[0,1].map(i => <div key={i} className="w-4 h-4 rounded bg-[rgba(0,0,0,0.06)]" />)}
@@ -39,29 +39,29 @@ export default function WorkspaceMockup() {
         {/* App top nav */}
         <div className="bg-white border-b border-[rgba(0,0,0,0.07)] px-4 py-1.5 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img src="/peaxis-logo.png" alt="PEAXIS" style={{ height: 14, width: 'auto' }} />
+            <img src="/wayloom-logo.png" alt="Wayloom" style={{ height: 14, width: 'auto' }} />
             <div className="flex items-center gap-1" style={{ fontSize: 9, color: '#6B7280' }}>
-              <span>Jobs</span>
+              <span>Tests</span>
               <span style={{ color: '#D1D5DB' }}>›</span>
-              <span>Senior React Developer</span>
+              <span>Memory & Orientation Screening</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <div className="px-2 py-0.5 rounded-full text-white font-semibold" style={{ background: '#00B8B3', fontSize: 8 }}>
-              + New Job
+              + New Test
             </div>
-            <div className="w-5 h-5 rounded-full bg-[#E6FAF9] flex items-center justify-center text-[#009E9A] font-bold" style={{ fontSize: 8 }}>H</div>
+            <div className="w-5 h-5 rounded-full bg-[#E6FAF9] flex items-center justify-center text-[#009E9A] font-bold" style={{ fontSize: 8 }}>C</div>
           </div>
         </div>
 
-        {/* Job Header */}
+        {/* Test Header */}
         <div className="bg-white border-b border-[rgba(0,0,0,0.08)] px-4 py-2.5 flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-[#001027]" style={{ fontSize: 13 }}>Senior React Developer</span>
+              <span className="font-extrabold text-[#001027]" style={{ fontSize: 13 }}>Memory & Orientation Screening</span>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#E6FAF9] text-[#009E9A] border border-[#99E6E4]">Published</span>
             </div>
-            <div style={{ fontSize: 9, color: '#6B7280' }}>Tunis, Tunisia · Full-time · On-site · 24 candidates · Avg match 79%</div>
+            <div style={{ fontSize: 9, color: '#6B7280' }}>Tunis Memory Clinic · 10–15 min · Adapted: Arabic, TN · 24 sessions · Avg completion 90%</div>
         </div>
         <div className="flex items-center gap-1.5">
           {['Edit', 'Share', 'Preview'].map(a => (
@@ -72,7 +72,7 @@ export default function WorkspaceMockup() {
 
       {/* Tab strip */}
       <div className="bg-white border-b border-[rgba(0,0,0,0.08)] flex">
-        {['Pipeline', 'Candidates', 'Analytics', 'Activity', 'Job Details'].map((tab, i) => (
+        {['Sessions', 'Patients', 'Analytics', 'Activity', 'Test Details'].map((tab, i) => (
           <div
             key={tab}
             className={`px-3 py-2 font-medium relative ${i === 0 ? 'text-[#001027]' : 'text-[#6B7280]'}`}
@@ -88,7 +88,7 @@ export default function WorkspaceMockup() {
       <div className="flex gap-0 overflow-hidden" style={{ height: 240 }}>
         {/* Pipeline columns (compressed) */}
         <div className="flex-1 p-2 flex gap-1.5 overflow-hidden">
-          {['Applied 12', 'Screening 7', 'Interview 4', 'Offer 2', 'Hired 1'].map((col, i) => {
+          {['Consented 12', 'In Progress 7', 'Scored 4', 'Flagged 2', 'Reported 1'].map((col, i) => {
             const [name, count] = col.split(' ')
             const colors = ['#00B8B3','#6B7280','#374151','#FE595A','#009E9A']
             return (
@@ -107,7 +107,7 @@ export default function WorkspaceMockup() {
                       <div className="w-4 h-4 rounded-full flex items-center justify-center text-white font-bold" style={{ background: colors[i], fontSize: 6 }}>
                         {['SM','AK','YA'][ci + (i > 0 ? i : 0)]?.[0] || 'C'}
                       </div>
-                      <div className="font-bold text-[#001027]" style={{ fontSize: 8 }}>Candidate</div>
+                      <div className="font-bold text-[#001027]" style={{ fontSize: 8 }}>Patient</div>
                     </div>
                     <div className="flex items-center gap-1">
                       <span style={{ fontSize: 7, color: '#00B8B3' }}>✦</span>
@@ -124,19 +124,19 @@ export default function WorkspaceMockup() {
         <div className="w-48 flex-shrink-0 border-l border-[rgba(0,0,0,0.08)] bg-white flex flex-col overflow-hidden">
           {/* Drawer header */}
           <div className="flex items-center justify-between px-3 py-2 border-b border-[rgba(0,0,0,0.06)]">
-            <span className="font-bold text-[#001027]" style={{ fontSize: 10 }}>Sara Mansouri</span>
+            <span className="font-bold text-[#001027]" style={{ fontSize: 10 }}>Amina Trabelsi</span>
             <span style={{ fontSize: 12, color: '#6B7280', cursor: 'pointer' }}>×</span>
           </div>
 
           <div className="flex-1 overflow-hidden p-2 flex flex-col gap-2">
             {/* Stage + meta */}
             <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="px-1.5 py-0.5 rounded-full font-semibold bg-[#E6FAF9] text-[#009E9A]" style={{ fontSize: 8 }}>Applied</span>
-              <span style={{ fontSize: 8, color: '#9CA3AF' }}>Applied 3 days ago</span>
+              <span className="px-1.5 py-0.5 rounded-full font-semibold bg-[#E6FAF9] text-[#009E9A]" style={{ fontSize: 8 }}>Scored</span>
+              <span style={{ fontSize: 8, color: '#9CA3AF' }}>Completed 3 days ago</span>
             </div>
 
             {/* AI panel (compact) */}
-            <AIInsightMockup score={91} name="Sara M." compact={true} />
+            <AIInsightMockup score={91} name="Amina T." compact={true} />
 
             {/* Action buttons */}
             <div className="flex flex-col gap-1 mt-auto">
@@ -150,7 +150,7 @@ export default function WorkspaceMockup() {
                     fontSize: 8,
                   }}
                 >
-                  {['Move to Screening', 'Reject', 'View Full Profile'][i]}
+                  {['Approve report', 'Flag for review', 'View Full Session'][i]}
                 </div>
               ))}
             </div>

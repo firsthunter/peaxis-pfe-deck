@@ -7,22 +7,22 @@ import { fadeUp, stagger } from '../lib/animations'
 interface Props { step: number }
 
 const flowSteps = [
-  { label: 'Discover',   color: '#00B8B3', n: '1' },
-  { label: 'Upload CV',  color: '#00B8B3', n: '2' },
-  { label: 'AI Parse',   color: '#00B8B3', n: '3' },
-  { label: 'Assessment', color: '#00B8B3', n: '4' },
-  { label: 'Apply',      color: '#00B8B3', n: '5' },
-  { label: 'Track',      color: '#FE595A', n: '6' },
+  { label: 'Assigned',    color: '#00B8B3', n: '1' },
+  { label: 'Consent',     color: '#00B8B3', n: '2' },
+  { label: 'Intake',      color: '#00B8B3', n: '3' },
+  { label: 'Test',        color: '#00B8B3', n: '4' },
+  { label: 'AI Scoring',  color: '#00B8B3', n: '5' },
+  { label: 'Results',     color: '#FE595A', n: '6' },
 ]
 
 const pipelineSteps = [
-  { label: 'PDF / DOCX', bg: '#F3F4F6', text: '#374151' },
-  { label: 'Configured AI provider', bg: '#E6FAF9', text: '#009E9A' },
-  { label: 'JSON Profile', bg: '#F3F4F6', text: '#374151' },
-  { label: 'Redis Cache (30d)', bg: '#F3F4F6', text: '#374151' },
-  { label: 'Match Preview', bg: '#E6FAF9', text: '#009E9A' },
-  { label: 'Apply', bg: '#F3F4F6', text: '#374151' },
-  { label: 'Pipeline Stage', bg: '#F3F4F6', text: '#374151' },
+  { label: 'Consent + demographics', bg: '#F3F4F6', text: '#374151' },
+  { label: 'Adapted by language/culture', bg: '#E6FAF9', text: '#009E9A' },
+  { label: 'Conversational delivery', bg: '#F3F4F6', text: '#374151' },
+  { label: 'Redis deterministic cache', bg: '#F3F4F6', text: '#374151' },
+  { label: 'AI-assisted scoring', bg: '#E6FAF9', text: '#009E9A' },
+  { label: 'Normative comparison', bg: '#F3F4F6', text: '#374151' },
+  { label: 'Clinician + caregiver view', bg: '#F3F4F6', text: '#374151' },
 ]
 
 export default function DemoCandidate({ step }: Props) {
@@ -38,10 +38,10 @@ export default function DemoCandidate({ step }: Props) {
               <SectionTag section="Proposed Solution" number="4" />
             </motion.div>
             <motion.h2 variants={fadeUp} className="text-3xl font-extrabold leading-tight tracking-tight text-px-navy">
-              <GradientText variant="navy">PEAXIS Jobs</GradientText> — Candidate Journey
+              <GradientText variant="navy">Wayloom Patient Portal</GradientText> — Patient Journey
             </motion.h2>
             <motion.p variants={fadeUp} className="text-xs text-px-muted max-w-sm">
-              From job discovery to application tracking — with AI transparency at every step.
+              From assignment to results — with cultural adaptation and clinician review at every step.
             </motion.p>
           </div>
           {/* Compact horizontal stepper */}
@@ -107,7 +107,7 @@ export default function DemoCandidate({ step }: Props) {
                 </div>
               ))}
               <span className="ml-auto text-xs text-px-muted italic flex-shrink-0">
-                Upload once — AI handles the rest.
+                Assigned once — AI adapts and scores the rest.
               </span>
             </motion.div>
           )}

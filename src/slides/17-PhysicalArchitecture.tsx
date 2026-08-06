@@ -10,7 +10,7 @@ export default function PhysicalArch({ step }: Props) {
       <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-0.5">
         <motion.div variants={fadeUp}><SectionTag section="Architecture & Technologies" number="7" /></motion.div>
         <motion.h2 variants={fadeUp} className="text-3xl font-extrabold text-px-navy"><span className="text-px-teal">Physical</span> Architecture</motion.h2>
-        <motion.p variants={fadeUp} className="text-xs text-px-muted">Deployment topology for web apps, platform services, AI inference, and storage. Gemini or Azure OpenAI is configured at startup.</motion.p>
+        <motion.p variants={fadeUp} className="text-xs text-px-muted">Deployment topology for web, API, AI inference, execution visualizer, and storage. Gemini or Groq is selected per phase.</motion.p>
       </motion.div>
 
       <AnimatePresence>
@@ -22,8 +22,8 @@ export default function PhysicalArch({ step }: Props) {
             className="flex flex-1 items-center justify-center min-h-0"
           >
             <img
-              src="/arch-phys.png"
-              alt="Physical architecture showing users, frontend applications, platform services, AI services, and data storage"
+              src="/wayloom-arch-physical.svg"
+              alt="Physical architecture showing users, wayloom-web, wayloom-api, wayloom-ai, wayloom-execution, and data storage"
               className="w-full max-w-[910px] max-h-[470px] object-contain"
             />
           </motion.div>

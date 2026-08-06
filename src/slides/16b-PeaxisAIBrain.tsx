@@ -11,17 +11,17 @@ const ownership = [
   {
     icon: <Server size={20} />,
     title: 'NestJS API',
-    desc: 'Owns authorization, tenant scope, business records, deterministic assessment rules, and persistence.',
+    desc: 'Owns institution auth, tenant scope, plans, roles, and persistent business records.',
   },
   {
     icon: <RefreshCcw size={20} />,
-    title: 'Dedicated worker',
-    desc: 'Executes durable AI work, applies retry rules, and reconciles queued work without blocking HTTP requests.',
+    title: 'AI Brain (LangGraph)',
+    desc: 'Orchestrates the digitization pipeline phase by phase: ingest, segment, score, assemble, validate.',
   },
   {
     icon: <BrainCircuit size={20} />,
-    title: 'FastAPI service',
-    desc: 'Performs parsing, embeddings, citation-bound classification, and supported content generation only.',
+    title: 'FastAPI AI service',
+    desc: 'Performs OCR/vision parsing, AI-assisted scoring, and cultural/language adaptation via Gemini and Groq.',
   },
 ]
 
@@ -39,7 +39,7 @@ export default function PeaxisAIBrain({ step }: Props) {
             <GradientText variant="teal">AI ownership</GradientText> boundaries
           </motion.h2>
           <motion.p variants={fadeUp} className="text-sm text-px-muted">
-            AI infers; the platform owns rules and records; recruiters decide.
+            AI infers and adapts; the platform owns rules and records; clinicians decide.
           </motion.p>
         </motion.div>
 
@@ -75,11 +75,11 @@ export default function PeaxisAIBrain({ step }: Props) {
             >
               <div className="flex items-center gap-3 p-3 rounded-xl bg-[#E6FAF9] border border-[rgba(0,184,179,0.2)]">
                 <Database size={16} className="text-px-teal flex-shrink-0" />
-                <p className="text-sm text-px-navy"><strong>PostgreSQL + pgvector</strong> is authoritative for records, snapshots, and vectors.</p>
+                <p className="text-sm text-px-navy"><strong>PostgreSQL</strong> is authoritative for institutional and auth records; <strong>MongoDB</strong> holds engine sessions.</p>
               </div>
               <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-[var(--border)]">
                 <RefreshCcw size={16} className="text-px-teal flex-shrink-0" />
-                <p className="text-sm text-px-navy"><strong>Redis + BullMQ</strong> carries queues, locks, heartbeats, and non-authoritative caches.</p>
+                <p className="text-sm text-px-navy"><strong>Redis</strong> carries the deterministic phase cache, keyed on phase + input hash + prompt version.</p>
               </div>
             </motion.div>
           )}
@@ -93,9 +93,9 @@ export default function PeaxisAIBrain({ step }: Props) {
               animate={{ opacity: 1 }}
               className="flex items-center gap-2"
             >
-              <Badge variant="navy">NestJS decides by rules</Badge>
-              <Badge variant="teal">FastAPI infers</Badge>
-              <Badge variant="navy">Recruiter decides to hire</Badge>
+              <Badge variant="navy">NestJS enforces institution rules</Badge>
+              <Badge variant="teal">AI Brain infers & scores</Badge>
+              <Badge variant="navy">Clinician reviews & signs off</Badge>
             </motion.div>
           )}
         </AnimatePresence>

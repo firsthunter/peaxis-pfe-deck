@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react'
 
-type Variant = 'teal' | 'coral' | 'navy' | 'full'
+type Variant = 'teal' | 'coral' | 'navy' | 'full' | 'brand'
 
 const variantClass: Record<Variant, string> = {
   teal:  'gradient-text-teal',
   coral: 'gradient-text-coral',
   navy:  'gradient-text-navy',
   full:  'gradient-text-teal',
+  brand: 'gradient-text-brand',
 }
 
 interface GradientTextProps {

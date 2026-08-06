@@ -11,36 +11,36 @@ const reqs = [
   {
     icon: <Brain size={20} />,
     id: 'FR-06',
-    title: 'Evidence Matching',
-    items: ['Requirement-level assessment', '0–100 alignment score'],
+    title: 'Document Digitization',
+    items: ['Vision + OCR page understanding', 'Structured items from paper tests'],
     color: '#00B8B3',
   },
   {
     icon: <Upload size={20} />,
     id: 'FR-07',
-    title: 'CV Parsing',
-    items: ['PDF / DOCX / TXT upload', 'Async structured extraction'],
+    title: 'AI-Assisted Scoring',
+    items: ['Gemini Vision scoring of responses', 'Preserves validated scoring logic'],
     color: '#00B8B3',
   },
   {
     icon: <UserCheck size={20} />,
     id: 'FR-08',
-    title: 'Candidate Onboarding',
-    items: ['Apply with a CV', 'Confirm parsed profile'],
+    title: 'Cultural & Linguistic Adaptation',
+    items: ['Translate & culturally adapt items', 'Back-translation for quality'],
     color: '#00B8B3',
   },
   {
     icon: <FileCheck2 size={20} />,
     id: 'FR-09',
-    title: 'Explainable Review',
-    items: ['Cited strengths and gaps', 'Verification state per requirement'],
+    title: 'Clinician Report Generation',
+    items: ['Domain-level performance summary', 'Deterministic fallback when LLM unavailable'],
     color: '#00B8B3',
   },
   {
     icon: <ShieldCheck size={20} />,
     id: 'FR-10',
     title: 'Reliable AI Processing',
-    items: ['Queued AI work items', 'Retry and failure status'],
+    items: ['Model router across LLM providers', 'Deterministic cache & retry on failure'],
     color: '#00B8B3',
   },
 ]
@@ -59,7 +59,7 @@ export default function FuncReqAI({ step }: Props) {
             AI <GradientText variant="teal">requirements</GradientText>
           </motion.h2>
           <motion.p variants={fadeUp} className="text-base text-px-muted max-w-xl">
-            Implemented intelligence capabilities.
+            Implemented intelligence capabilities in the AI Brain pipeline.
           </motion.p>
         </motion.div>
 

@@ -10,25 +10,25 @@ interface Props { step: number }
 const gaps = [
   {
     icon: <Eye size={20} />,
-    title: 'AI black boxes',
+    title: 'Rapid growth: >25% CAGR over 6 years',
     color: '#FE595A',
   },
   {
     icon: <Puzzle size={20} />,
-    title: 'Fragmented tooling',
+    title: 'Large TAM: $31M global market by 2030',
     color: '#6B7280',
   },
   {
     icon: <Lightbulb size={20} />,
-    title: 'No candidate intelligence',
+    title: 'Underserved US: $2B market, few accessible tools',
     color: '#001027',
   },
 ]
 
 const responsePrinciples = [
-  { label: 'Evidence first' },
-  { label: 'Human authority' },
-  { label: 'Durable operations' },
+  { label: 'Accelerating dementia' },
+  { label: 'Clinical overload' },
+  { label: 'Policy & tech momentum' },
 ]
 
 export default function MarketGap({ step }: Props) {
@@ -42,7 +42,7 @@ export default function MarketGap({ step }: Props) {
             <SectionTag section="Existing Solutions & Gap" number="4" />
           </motion.div>
           <motion.h2 variants={fadeUp} className="text-5xl font-extrabold leading-tight tracking-tight text-px-navy">
-            The gap: <GradientText variant="teal">integrated, explainable AI</GradientText>
+            An exploding market for <GradientText variant="teal">cognitive health</GradientText>
           </motion.h2>
         </motion.div>
 
@@ -114,7 +114,7 @@ export default function MarketGap({ step }: Props) {
               </div>
               <div>
                 <p className="text-base font-bold text-px-navy">This gap defines the project's objective</p>
-                <p className="text-sm text-px-muted">One auditable recruitment platform.</p>
+                <p className="text-sm text-px-muted">One accessible, culturally-adaptive cognitive-testing platform.</p>
               </div>
             </motion.div>
           )}

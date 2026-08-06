@@ -32,15 +32,15 @@ const reqs = [
   {
     icon: <Briefcase size={20} />,
     id: 'FR-04',
-    title: 'Job Management',
-    items: ['Create and filter jobs', 'Hybrid text + vector search'],
+    title: 'Test Digitization & Management',
+    items: ['Upload or select validated cognitive tests', 'Define scoring rules & normative data'],
     color: '#00B8B3',
   },
   {
     icon: <GitBranch size={20} />,
     id: 'FR-05',
-    title: 'Application Pipeline',
-    items: ['Tracked application stages', 'Async assessment updates'],
+    title: 'Patient Session Pipeline',
+    items: ['Consent, intake & adaptive delivery', 'Real-time AI scoring & clinician report'],
     color: '#00B8B3',
   },
 ]
@@ -59,7 +59,7 @@ export default function FuncReqCore({ step }: Props) {
             Core platform <GradientText variant="teal">requirements</GradientText>
           </motion.h2>
           <motion.p variants={fadeUp} className="text-base text-px-muted max-w-xl">
-            Core platform capabilities.
+            Core platform capabilities for institutions, clinicians, and patients.
           </motion.p>
         </motion.div>
 

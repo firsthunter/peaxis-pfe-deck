@@ -10,7 +10,7 @@ interface Props { step: number }
 const pillars = [
   { icon: <ShieldCheck size={20} />, title: 'Identity & Access' },
   { icon: <CreditCard size={20} />, title: 'Plans & Entitlements' },
-  { icon: <Users size={20} />, title: 'Business Context' },
+  { icon: <Users size={20} />, title: 'Institution Context' },
 ]
 
 export default function PeaxisCore({ step }: Props) {
@@ -24,7 +24,7 @@ export default function PeaxisCore({ step }: Props) {
             <SectionTag section="Proposed Solution" number="6" />
           </motion.div>
           <motion.h2 variants={fadeUp} className="text-5xl font-extrabold leading-tight tracking-tight text-px-navy">
-            <GradientText variant="teal">PEAXIS Core</GradientText>
+            <GradientText variant="brand">Wayloom Core</GradientText>
           </motion.h2>
         </motion.div>
 
@@ -33,9 +33,9 @@ export default function PeaxisCore({ step }: Props) {
             {step >= 1 && (
               <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45 }}>
                 <ScreenshotFrame
-                  src="/core.png"
-                  alt="PEAXIS Core business workspace"
-                  caption="PEAXIS Core — access, business context, and plan controls"
+                  src="/wayloom-core.png"
+                  alt="Wayloom Core institution workspace"
+                  caption="Wayloom Core — access, institution context, and plan controls"
                   className="h-full"
                 />
               </motion.div>
@@ -69,7 +69,7 @@ export default function PeaxisCore({ step }: Props) {
             >
               <div className="w-1 h-6 rounded-full bg-px-teal flex-shrink-0" />
               <p className="text-sm text-px-navy">
-                One control centre for every module
+                One control centre for institutions, clinicians, and patients
               </p>
             </motion.div>
           )}

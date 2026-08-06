@@ -11,19 +11,19 @@ const sections = [
     icon: <CheckCircle size={18} />,
     title: 'Engineering Achievements',
     color: '#00B8B3',
-    items: ['Full-stack recruitment platform'],
+    items: ['Full-stack cognitive-testing platform, IRB-approved and clinically validated'],
   },
   {
     icon: <Layers3 size={18} />,
     title: 'Architectural Achievements',
     color: '#00B8B3',
-    items: ['Controlled AI architecture'],
+    items: ['Four-service architecture with a deterministic, cacheable AI digitization pipeline'],
   },
   {
     icon: <Lightbulb size={18} />,
     title: 'Lessons Learned',
     color: '#00B8B3',
-    items: ['Human authority stays central'],
+    items: ['Clinician authority stays central; AI assists, never replaces the rubric'],
   },
 ]
 
@@ -97,7 +97,7 @@ export default function Conclusion({ step }: Props) {
                 </svg>
               </div>
               <p className="text-sm text-px-navy leading-relaxed">
-                <strong>Evidence, not opaque ranking.</strong>
+                <strong>Validated scoring logic, not opaque AI — early detection gives families time.</strong>
               </p>
             </motion.div>
           )}

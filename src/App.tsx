@@ -119,8 +119,8 @@ function PresentationApp() {
             {/* Left — Prospecter */}
             <img src="/prospecter-logo.png" alt="Prospecter" style={{ height: 40, width: 'auto', display: 'block' }} />
            
-            {/* Centre — PEAXIS */}
-            <img src="/peaxis-logo.png" alt="PEAXIS" style={{ height: 32, width: 'auto', display: 'block' }} />
+            {/* Centre — Wayloom.AI */}
+            <img src="/wayloom-logo.png" alt="Wayloom.AI" style={{ height: 32, width: 'auto', display: 'block' }} />
 
             {/* Right — ESPRIT */}
             <img src="/esprit-logo.png" alt="ESPRIT" style={{ height: 40, width: 'auto', display: 'block' }} />

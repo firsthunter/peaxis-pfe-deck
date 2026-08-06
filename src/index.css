@@ -29,6 +29,7 @@
   --gradient-coral: linear-gradient(135deg, #FE595A, #FF7B7C);
   --gradient-navy:  linear-gradient(135deg, #001027, #0E2A47);
   --gradient-full:  linear-gradient(135deg, #00B8B3, #009E9A);
+  --gradient-brand: linear-gradient(135deg, #A855C7, #D6539D);
 
   /* Semantic tokens for restrained usage */
   --accent-primary:   #00B8B3;
@@ -85,6 +86,13 @@ html, body, #root {
 
 .gradient-text-coral {
   background: var(--gradient-coral);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-brand {
+  background: var(--gradient-brand);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

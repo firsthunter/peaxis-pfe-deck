@@ -10,7 +10,7 @@ export default function LogicalArch({ step }: Props) {
       <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-0.5">
         <motion.div variants={fadeUp}><SectionTag section="Architecture & Technologies" number="7" /></motion.div>
         <motion.h2 variants={fadeUp} className="text-3xl font-extrabold text-px-navy"><span className="text-px-teal">Logical</span> Architecture</motion.h2>
-        <motion.p variants={fadeUp} className="text-xs text-px-muted">Client, platform, AI, and data boundaries. Gemini or Azure OpenAI is configured at startup.</motion.p>
+        <motion.p variants={fadeUp} className="text-xs text-px-muted">Client, platform, AI, and data boundaries. Gemini or Groq is selected per phase by the model router.</motion.p>
       </motion.div>
 
       <AnimatePresence>
@@ -22,8 +22,8 @@ export default function LogicalArch({ step }: Props) {
             className="flex flex-1 items-center justify-center min-h-0"
           >
             <img
-              src="/arch-log.png"
-              alt="Logical architecture showing client applications, the NestJS API, FastAPI AI services, and the data layer"
+              src="/wayloom-arch-logical.svg"
+              alt="Logical architecture showing the Next.js web app, NestJS API, FastAPI AI Brain, model router, and the data layer"
               className="w-full max-w-[1060px] max-h-[460px] object-contain"
             />
           </motion.div>

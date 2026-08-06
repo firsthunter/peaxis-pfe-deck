@@ -9,17 +9,17 @@ interface Props { step: number }
 
 const pillars = [
   {
-    title: 'Pipeline workspace',
+    title: 'Clinician test workspace',
     color: '#00B8B3',
     icon: <Kanban size={20} />,
   },
   {
-    title: 'Evidence assessment',
+    title: 'AI-assisted scoring review',
     color: '#009E9A',
     icon: <Brain size={20} />,
   },
   {
-    title: 'Async processing',
+    title: 'Async digitization processing',
     color: '#001027',
     icon: <FileCheck2 size={20} />,
   },
@@ -36,7 +36,7 @@ export default function PeaxisHire({ step }: Props) {
             <SectionTag section="Proposed Solution" number="6" />
           </motion.div>
           <motion.h2 variants={fadeUp} className="text-4xl font-extrabold leading-tight tracking-tight text-px-navy">
-            <GradientText variant="teal">PEAXIS Hire</GradientText>
+            <GradientText variant="brand">Wayloom Clinician Suite</GradientText>
           </motion.h2>
         </motion.div>
 
@@ -45,9 +45,9 @@ export default function PeaxisHire({ step }: Props) {
             {step >= 1 && (
               <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45 }}>
                 <ScreenshotFrame
-                  src="/hire.png"
-                  alt="PEAXIS Hire recruiter workspace"
-                  caption="PEAXIS Hire — recruiter pipeline and assessment workspace"
+                  src="/wayloom-web.png"
+                  alt="Wayloom clinician workspace"
+                  caption="Wayloom Clinician Suite — test publishing and scoring review"
                   className="h-full"
                 />
               </motion.div>
@@ -80,7 +80,7 @@ export default function PeaxisHire({ step }: Props) {
             >
               <div className="w-1.5 h-6 rounded bg-[#00B8B3] flex-shrink-0" />
               <p className="text-sm text-px-navy">
-                Pipeline → evidence → recruiter decision
+                Publish test → AI scores → clinician reviews and signs off
               </p>
             </motion.div>
           )}

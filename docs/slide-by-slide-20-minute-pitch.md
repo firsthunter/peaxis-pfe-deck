@@ -1,186 +1,184 @@
-# PEAXIS — Slide-by-slide 20-minute defense pitch
+# Wayloom.AI — Slide-by-slide 20-minute defense pitch
 
 **Timing:** 15 minutes of slides + 5 minutes live demo.  
-**Core message:** **Evidence, not opaque ranking.**
+**Core message:** **Validated scoring logic, not opaque AI.**
 
-PEAXIS is a launch-oriented SaaS product: Tunisia first, then a MENA expansion direction. It was developed during the final-year internship, but with production-minded concerns: tenant-aware data, authorization, persistence, asynchronous processing, and explainable AI. Do not claim measured accuracy, latency, throughput, fairness, or SLAs until they are formally measured.
+Wayloom.AI is a launch-oriented cognitive-testing platform: a US-first pilot direction, with a Gulf/MENA expansion path. It was developed during the final-year internship at Prospecter, but with production-minded concerns: institution-aware data, IRB-backed clinical process, deterministic scoring, asynchronous processing, and explainable AI. Do not claim measured diagnostic accuracy, sensitivity/specificity, clinical efficacy, or SLAs until they are formally validated.
 
 This is the living pitch script. It follows the **current 28-slide deck exactly** and should be updated whenever the slide order or content changes.
 
-## Slides 1–8 — Why PEAXIS exists · 0:00–3:10
+## Slides 1–8 — Why Wayloom.AI exists · 0:00–3:10
 
 ### Slide 1 — Cover · 0:00–0:40
 
-“Imagine two candidates applying for the same role. One receives a score of 82 and the other 61. If the recruiter asks: why, what evidence supports this, and can I trust it? Many AI systems cannot answer clearly.
+"Nearly 7 million Americans aged 65 and older are living with dementia today. Half of them will never receive a clinical diagnosis. Not because the disease is untestable — because testing hasn't kept up. Most cognitive screening still runs on paper, unchanged since the 1980s, gated behind long clinic visits and months-long waitlists.
 
-PEAXIS addresses this problem: AI should provide evidence, not only ranking. It is not intended to remain a classroom prototype. It is a new SaaS product being prepared for Tunisia, with a MENA expansion direction. That is why I built it with tenant-aware data, durable processing, and explainable AI.”
+Wayloom.AI addresses this: a platform that digitizes any validated cognitive test, delivers it conversationally, scores it with AI-assisted interpretation while preserving the clinician's validated scoring logic, and adapts it culturally and linguistically. It is not a classroom prototype — it's a product moving toward clinical pilots, built with institution-aware data, IRB approval, and a clear boundary around what the AI is trusted to do."
 
-**Transition:** “First, here is the journey I will take you through.”
+**Transition:** "First, here is the journey I will take you through."
 
 ### Slide 2 — Presentation Overview · 0:40–0:55
 
-“I will establish the recruitment problem, show PEAXIS and a live workflow, then explain the architecture and AI controls that make an assessment reviewable.”
+"I will establish the cognitive-testing problem, show Wayloom.AI and a live workflow, then explain the architecture and AI controls that make a clinical score reviewable."
 
-**Transition:** “The need begins with how recruitment is changing.”
+**Transition:** "The need begins with how cognitive health is changing."
 
 ### Slide 3 — Prospecter, Internship Host · 0:55–1:20
 
-“Prospecter is an AI-powered B2B SaaS platform. Its use of multi-tenant design, LLM workflows, Redis, and background workers informed the engineering discipline I applied to PEAXIS. PEAXIS itself remains an independent recruitment product.”
+"Prospecter is an AI-powered B2B SaaS platform for outbound prospecting. Its use of multi-tenant design, LLM workflows, and background processing informed the engineering discipline I applied to Wayloom.AI. Wayloom.AI itself is an independent cognitive-health product."
 
-**Transition:** “I applied those practices to the more sensitive domain of hiring.”
+**Transition:** "I applied those practices to the more sensitive domain of clinical assessment."
 
 ### Slide 4 — Internship Context · 1:20–1:35
 
-“During the internship I worked with full-stack, AI, and platform-engineering practices. I used them to build a maintainable product foundation rather than a one-time demo.”
+"During the internship I worked with full-stack, AI, and platform-engineering practices. I used them to build a maintainable product foundation rather than a one-time demo."
 
-**Transition:** “The product tackles a recruitment environment that is changing rapidly.”
+**Transition:** "The product tackles a cognitive-health environment that is changing rapidly."
 
-### Slide 5 — Recruitment in the Digital Era · 1:35–1:55
+### Slide 5 — Cognitive Health in the Digital Era · 1:35–1:55
 
-“Application volume, recruiter workload, candidate expectations, and AI adoption are increasing together. The challenge is no longer only processing CVs faster; it is making decisions at scale while preserving trust.”
+"An aging population, clinical overload, rising caregiver expectations, and AI adoption in healthcare are increasing together. The challenge is no longer only running the test faster; it's making the test accessible and getting patients seen before it's too late to act."
 
-**Transition:** “The resulting recruitment pain is measurable.”
+**Transition:** "The resulting testing gap is measurable."
 
-### Slide 6 — Recruitment Challenges · 1:55–2:35
+### Slide 6 — Dementia Is Increasing, Testing Isn't · 1:55–2:35
 
-“Average time-to-hire is **42 days**. **75%** of recruiters report overload. **60%** of candidates report no feedback. A bad hire averages **$14.9K**. These are market-context KPIs, not PEAXIS performance claims.
+"**6.9 million** Americans 65+ are living with dementia in 2024, projected to reach **12 million by 2040**. **Half** never receive a clinical diagnosis. Rates **double every five years** after 65 — the WHO recognizes dementia as a public-health priority. These are market-context figures, not Wayloom.AI clinical claims.
 
-For PEAXIS, they translate to engineering requirements: responsive processing, reviewable results, and a better candidate experience.”
+For Wayloom.AI, they translate to engineering requirements: digitized testing, culturally accessible delivery, and faster time-to-screening."
 
-**Transition:** “Existing tools solve parts of the workflow, but they do not all solve the same problem in the same way.”
+**Transition:** "Existing tools solve parts of the workflow, but they do not all solve the same problem in the same way."
 
-### Slide 7 — Competitive Analysis · 2:35–2:55
+### Slide 7 — Competitive Landscape · 2:35–2:55
 
-“This comparison positions PEAXIS against established recruitment platforms. My objective is not to say that those products have no ATS or AI capability. The intended difference is to bring together the implemented candidate portal, recruitment workflow, and evidence-based assessment in one SME-oriented product.
+"This comparison positions Wayloom.AI against BrainCheck, Linus Health, and Altoida. My objective is not to say those products can't monitor cognitive decline longitudinally — they can, and so can we. The intended difference is combining cultural adaptation, adaptive conversational testing, and caregiver integration with at-home usability in one product.
 
-I use this as a positioning view, not as an independently benchmarked claim of product superiority.”
+I use this as a positioning view, not as an independently benchmarked claim of clinical superiority."
 
-**Transition:** “That positioning leads directly to the gap PEAXIS addresses.”
+**Transition:** "That positioning leads directly to the gap Wayloom.AI addresses."
 
-### Slide 8 — Market Gap · 2:55–3:10
+### Slide 8 — An Exploding Market for Cognitive Health · 2:55–3:10
 
-“The gap is an integrated workflow that connects applications, AI assistance, and recruiter accountability. PEAXIS combines evidence-first assessment, human authority, and durable operations in one platform.”
+"The cognitive-health market is projected to grow at over 25% CAGR over the next six years, reaching a $31M global TAM by 2030 — with a $2B US market today served by few accessible tools. Wayloom.AI combines accessible delivery, validated scoring, and cultural adaptation in one platform."
 
 ## Slides 9–12 — Delivery and requirements · 3:10–4:40
 
 ### Slide 9 — Engineering Methodology
 
-“I used Scrum to split delivery into short sprints and Kanban to track the backlog, work in progress, and completed work. Each sprint followed: plan, build and test, review, then improve. The platform foundation came before the AI layer.”
+"I used Scrum to split delivery into short sprints and Kanban to track the backlog, work in progress, and completed work. Each sprint followed: plan, build and test, review, then improve. The platform foundation came before the AI digitization layer."
 
 ### Slide 10 — Core Functional Requirements
 
-“The core delivered capabilities are authentication, business context, roles, job management, and application stages. AI becomes useful only when this workflow is reliable.”
+"The core delivered capabilities are authentication, institution-scoped multi-tenancy, roles and plan entitlements, test digitization and management, and the patient session pipeline. AI becomes useful only when this workflow is reliable."
 
 ### Slide 11 — AI Functional Requirements
 
-“The delivered AI capabilities are CV parsing, evidence matching, explainable review, and reliable background processing. I do not claim interview scheduling or analytics as delivered features.”
+"The delivered AI capabilities are document digitization, AI-assisted scoring, cultural and linguistic adaptation, clinician report generation, and reliable AI processing across providers. I do not claim diagnostic accuracy or clinical efficacy as delivered, validated outcomes."
 
 ### Slide 12 — Non-Functional Requirements
 
-“Security, tenant boundaries, modularity, asynchronous processing, explicit failure states, and explainability are first-class design properties. Measured production-scale SLAs are a future validation step.”
+"Security, institution tenant boundaries, modularity, asynchronous processing, explicit failure states, and explainability are first-class design properties. Measured production-scale SLAs and clinical validation metrics are future validation steps."
 
-**Transition:** “With the requirements defined, here is the product users interact with.”
+**Transition:** "With the requirements defined, here is the product users interact with."
 
 ## Slides 13–16 — Product and live proof · 4:40–6:15
 
-### Slide 13 — PEAXIS Overview
+### Slide 13 — Wayloom.AI Overview
 
-“Core manages business foundation. Hire is the recruiter workspace. Jobs is the candidate portal. The modules share one controlled platform and AI workflow.”
+"Core manages the institution foundation. The Clinician Suite is where tests are published and scoring is reviewed. The Patient Portal is where consent, testing, and results happen. The modules share one controlled platform and AI Brain."
 
-### Slide 14 — PEAXIS Core
+### Slide 14 — Wayloom Core
 
-“Core is the SaaS control layer: identity, membership, entitlements, and business context. It provides the tenant-aware foundation for every module.”
+"Core is the institutional control layer: identity, access, plans, and institution context. It provides the tenant-aware foundation for every module."
 
-### Slide 15 — PEAXIS Hire
+### Slide 15 — Wayloom Clinician Suite
 
-“Hire gives recruiters a pipeline and an assessment view. The value is that a score comes with cited evidence, gaps, and verification states.”
+"The Clinician Suite gives clinicians a test-publishing workspace and a scoring review view. The value is that a domain score comes with the response it was computed from, the rubric that scored it, and a normative comparison — not an opaque number."
 
-### Slide 16 — PEAXIS Jobs
+### Slide 16 — Wayloom Patient Portal
 
-“Jobs supports the candidate journey: discover a role, submit a CV, complete a profile, and follow progress. The submitted profile later becomes grounded evidence for assessment.”
+"The Patient Portal supports the patient journey: consent, intake, conversational testing adapted to language and culture, and results shared with the clinician and caregiver."
 
-**Transition to demo:** “I will now show one candidate moving from CV upload to a recruiter-reviewable assessment.”
+**Transition to demo:** "I will now show one patient moving from consent to a clinician-reviewable report."
 
 ## Live demo — 5 minutes · 6:15–11:15
 
-1. **Candidate upload:** “The candidate submits a CV. The platform validates the file, queues parsing, and returns a processing state; it does not block on an AI request.”
-2. **Structured profile:** “The CV becomes structured skills, experience, and citations. This is evidence preparation, not an automatic hiring decision.”
-3. **Recruiter workspace:** “The recruiter opens the application and the generated assessment.”
-4. **Evidence assessment:** “For a requirement, show one cited proof, one evaluation state, and one gap or verification item. The recruiter can challenge the result.”
-5. **Close:** “The model assists with bounded evidence; deterministic backend rules calculate the assessment; the recruiter keeps the final hiring decision.”
+1. **Consent & intake:** "The patient completes consent and demographics. The platform persists this before any test data collection."
+2. **Conversational testing:** "The test is delivered conversationally, adapted to the patient's language and culture — same clinical validity, different surface."
+3. **Clinician workspace:** "The clinician opens the session and the generated domain scores."
+4. **AI-assisted scoring:** "For a domain, show the response, the scoring rule, the AI-assisted interpretation for a complex item, and the normative comparison. The clinician can flag it for review."
+5. **Close:** "The AI interprets responses using the clinician's validated scoring logic; normative data anchors the result; the clinician keeps final authority over the report."
 
-**Transition:** “Now that the user outcome is visible, I will explain how it is implemented.”
+**Transition:** "Now that the user outcome is visible, I will explain how it is implemented."
 
 ## Slides 17–25 — Architecture and AI engineering · 11:15–14:30
 
 ### Slide 17 — Logical Architecture
 
-“The browser calls NestJS, never Gemini directly. NestJS owns authentication, authorization, tenant context, requirements, applications, and final business decisions. FastAPI is the isolated inference boundary. PostgreSQL is the source of truth; Redis supports queues and cache.”
+"The browser calls NestJS, never Gemini or Groq directly. NestJS owns authentication, authorization, institution context, plans, and institutional records. The FastAPI AI Brain is the isolated inference boundary, orchestrated by LangGraph. PostgreSQL is the source of truth for institutional data; MongoDB holds engine sessions; Redis is the deterministic phase cache."
 
 ### Slide 18 — Physical Architecture
 
-“Web applications, API, worker, AI service, PostgreSQL, and Redis run as separate components. A worker can scale independently when CV volume grows, and slow AI work does not degrade the user-facing API.”
+"Web, API, AI engine, and execution visualizer run as four independently deployable services, each with its own CI workflow. The base stack runs the AI engine and execution visualizer; the development overlay adds the API and web app. The AI service can absorb digitization load without degrading the institutional API."
 
-### Slide 19 — AI Runtime & Worker
+### Slide 19 — AI Runtime & AI Brain
 
-“NestJS validates and authorizes the request, then writes an `AiWorkItem` in PostgreSQL. BullMQ delivers it to a dedicated worker. The worker calls FastAPI, persists the result, and updates a durable pending, processing, completed, or failed state.
+"NestJS validates and authorizes the request, then the AI Brain — a LangGraph phase graph — takes over: ingest, layout, reading order, segment, score, assemble, validate, repair. The model router selects Gemini or Groq per phase and retries transient failures.
 
-The worker is necessary because parsing, embeddings, and classification can take seconds or fail temporarily. It makes work non-blocking, retryable, observable, and durable.”
+The phased pipeline is necessary because vision, translation, and scoring calls can take seconds or fail temporarily. It makes digitization non-blocking, retryable, observable, and cacheable."
 
-### Slide 20 — CV Parsing Pipeline
+### Slide 20 — Document Digitization Pipeline
 
-“NestJS validates type, size, signature, and checksum, creates `ResumeParse`, and queues `PARSE_CV`. FastAPI extracts native PDF, DOCX, or TXT text. Google Vision OCR is an optional fallback only for poor PDFs.
+"A clinician uploads a paper test. The ingest node captures page images and embedded text. Gemini Vision performs layout and block detection; a reading-order node establishes columns and groups. Segmentation turns blocks into structured items, which assemble into a DraftTestSpec.
 
-Gemini **3.5 Flash** returns strict structured JSON at temperature zero: skills, experience, education, languages, and citations. The output is grounded against the original CV text. Unsupported facts and invalid fields are rejected, while warnings, extraction method, model metadata, and output are saved in PostgreSQL. This produces evidence, not a score.”
+A validator flags blocking errors; a repair node proposes and auto-applies minimal fixes. The clinician reviews, edits scoring rules and normative data, and publishes. This produces a scorable test, not an automatic diagnosis."
 
-### Slide 21 — Evidence-Based Matching Engine
+### Slide 21 — AI-Assisted Scoring Engine
 
-“The recruiter confirms the job requirements. PEAXIS turns the parsed CV into `CandidateEvidenceClaim` records and evidence chunks.
+"Scoring rules and normative data are attached by the clinician at digitization time. Simple items — multiple choice, digit span, serial subtraction — score deterministically against the rubric. Complex or image-based responses, like drawing or audio, are scored by Gemini Vision, constrained to that item's scoring rule.
 
-NestJS tries deterministic matching first: normalized text, token and stem matching, and relevant experience-month calculation. Only when direct evidence is missing does it use `gemini-embedding-001`, producing a 768-dimension vector. pgvector searches only that candidate’s chunks and returns at most eight cited results.
+Raw scores are then adjusted for demographics and converted to a z-score against normative population data, producing a domain subscore. The clinician reviews the result and signs off."
 
-Gemini then classifies only supplied citations as direct, related, transferable, ambiguous, or none. It cannot invent a qualification. NestJS owns the final evaluation.”
+### Slide 22 — How Scoring Is Computed
 
-### Slide 22 — How Matching Is Computed
+"No rubric match on a mandatory item flags for clinician review; simple items score directly against the rubric; complex items get AI-assisted interpretation constrained to the rubric; every domain subscore is normalized against demographic and normative data before it reaches the report.
 
-“Mandatory with no evidence becomes `REQUIRES_VERIFICATION`; preferred with no evidence is `UNKNOWN`; evidence with unmet years is `PARTIALLY_SATISFIED`; evidence and policy satisfied is `SATISFIED`.
-
-The final score is deterministic: required requirements weigh 0.55, experience 0.25, preferred 0.10. Satisfied contributes 100, partially satisfied 60, and other states zero. Transferable evidence receives partial credit. pgvector similarity retrieves citations; it does not rank candidates.”
+The model is: domain subscore = normalize(raw score, demographic adjustment, normative z-score). AI assists interpretation; it does not replace the rubric or rank patients."
 
 ### Slide 23 — AI Models by Use Case
 
-“PEAXIS uses a Gemini-only model path. The verified configured model for CV parsing and bounded evidence classification is **Gemini 3.5 Flash**. `gemini-embedding-001` produces the 768-dimension semantic vectors. Google Vision OCR is a document-extraction fallback, not the decision engine.
+"Wayloom.AI routes across two providers by phase. Gemini Vision handles document layout, OCR, and scoring of complex responses. Groq handles translation and cultural adaptation, including back-translation for quality. Gemini also drafts the clinician report, with a deterministic fallback if the provider is unavailable.
 
-The main point is: Gemini extracts and classifies evidence; NestJS and PostgreSQL calculate the final score.”
+The main point is: AI interprets and adapts; deterministic rules and normative data calculate the final domain scores."
 
-### Slide 24 — Performance Optimisations
+### Slide 24 — Performance Optimizations
 
-“Performance comes from architecture, not a claim that the model is instantly fast. Redis reuses bounded parse and embedding results. BullMQ moves slow inference off the request path. Candidate-scoped chunk retrieval limits the amount of evidence processed, and provider retries handle transient failures.
+"Performance comes from architecture, not a claim that the model is instantly fast. Redis caches phase outputs keyed on phase, input hash, and prompt version — never the source of truth. The phased pipeline moves slow inference outside the request path. AI scoring is called only for items whose rubric requires judgment, and the model router retries transient provider failures across Gemini and Groq.
 
-One transparent limit: pgvector is enabled, but there is no ANN vector index in the current baseline migration. That is a measured optimisation step for future scale, not a claim made today.”
+One transparent limit: the Mongo-to-Postgres migration is not yet complete, so persistence-dependent AI endpoints still depend on MongoDB. That is a measured hardening step for launch, not a claim made today."
 
 ### Slide 25 — Technical Challenges & Solutions
 
-“The key challenges were latency, CV reliability, grounding, explainability, and provider failures. The answers are durable workers and retries; file gates, quality checks, and optional OCR; citation-bound classification; persisted snapshots and evaluations; and explicit failure states.
+"The key challenges were AI latency, document quality, cultural validity, scoring safety, and provider outages. The answers are a phased, cached, and retried pipeline; vision layout with validator and repair nodes; cultural and linguistic adaptation with back-translation; a forbidden-vocabulary guard on patient-facing text; and model-router retries with a deterministic report fallback.
 
-I also make the remaining access-control gap explicit before production. Engineering quality means documenting what is solved and what still needs hardening.”
+I also make the Mongo-to-Postgres migration gap explicit before production. Engineering quality means documenting what is solved and what still needs hardening."
 
 ## Slides 26–28 — Launch path and close · 14:30–15:00
 
 ### Slide 26 — Roadmap
 
-“Before widening AI functionality, the next priorities are authorization hardening, operational observability, measured accuracy and fairness evaluation, vector lifecycle management, and performance testing. The objective is to strengthen the existing foundation for launch.”
+"Q1 builds HIPAA-grade infrastructure and expands IRB approval alongside engine finalization. Q2 launches clinical pilots, collects first patient data, and targets three signed LOIs. Q3 submits results for peer review, expands pilot sites, and files a patent. Q4 targets scale readiness: license agreements, a deployment-ready platform, a seed raise, and a scoped EHR integration pathway."
 
 ### Slide 27 — Conclusion
 
-“PEAXIS delivers a candidate portal, recruiter workspace, asynchronous AI processing, and an evidence-based assessment engine. Its contribution is the boundary around AI: Gemini helps interpret evidence, backend rules calculate the result, and the recruiter retains authority.
+"Wayloom.AI delivers a document-digitization pipeline, AI-assisted scoring, cultural and linguistic adaptation, and a clinician-reviewable report — validated with an IRB-approved prototype tested by 25+ users at a 90% completion rate. Its contribution is the boundary around AI: Gemini and Groq help interpret and adapt, deterministic rules and normative data calculate the result, and the clinician retains authority.
 
-It is a SaaS foundation aimed at Tunisia first and MENA next: **evidence, not opaque ranking.**”
+It's a platform aimed at US clinical pilots first, with a Gulf/MENA expansion path: **validated scoring logic, not opaque AI — early detection gives families time.**"
 
 ### Slide 28 — Questions
 
-“Thank you for your attention. I am ready for your questions.”
+"Thank you for your attention. I am ready for your questions."
 
 ## If the jury asks for metrics
 
-“The displayed KPIs describe the recruitment problem. I implemented and tested the workflow, but I deliberately do not claim a measured recruitment improvement, model accuracy, fairness, or time saving until I run a controlled evaluation with a representative dataset.”
+"The displayed figures describe the cognitive-health market and testing gap. I implemented and tested the digitization and scoring workflow, secured IRB approval, and ran early usability testing — but I deliberately do not claim measured diagnostic accuracy, sensitivity/specificity, or clinical efficacy until a controlled clinical validation study is run against gold-standard tests."
