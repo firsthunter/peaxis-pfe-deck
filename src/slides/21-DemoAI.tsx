@@ -13,7 +13,7 @@ const capabilities = [
   },
   {
     name: 'AI-Assisted Scoring',
-    desc: 'Complex responses are scored by Gemini Vision against the clinician\'s rubric',
+    desc: 'Described-level answers are judged by the semantic scorer against the clinician\'s rubric; drawings are clinician-scored',
     color: '#374151', bg: '#F3F4F6',
   },
   {

@@ -33,7 +33,7 @@ export default function PeaxisCore({ step }: Props) {
             {step >= 1 && (
               <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45 }}>
                 <ScreenshotFrame
-                  src="/wayloom-core.png"
+                  src="/platform/institution-member-management.png"
                   alt="Wayloom Core institution workspace"
                   caption="Wayloom Core — access, institution context, and plan controls"
                   className="h-full"

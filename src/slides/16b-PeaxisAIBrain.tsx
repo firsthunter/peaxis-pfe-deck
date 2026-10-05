@@ -16,12 +16,12 @@ const ownership = [
   {
     icon: <RefreshCcw size={20} />,
     title: 'AI Brain (LangGraph)',
-    desc: 'Orchestrates the digitization pipeline phase by phase: ingest, segment, score, assemble, validate.',
+    desc: 'Runs the multi-step AI pipeline (read the page, detect layout, extract questions, check answers) as a structured graph.',
   },
   {
     icon: <BrainCircuit size={20} />,
     title: 'FastAPI AI service',
-    desc: 'Performs OCR/vision parsing, AI-assisted scoring, and cultural/language adaptation via Gemini and Groq.',
+    desc: 'Performs OCR/vision parsing, AI-assisted scoring, and cultural/language adaptation via Gemini and Azure OpenAI.',
   },
 ]
 
@@ -75,11 +75,11 @@ export default function PeaxisAIBrain({ step }: Props) {
             >
               <div className="flex items-center gap-3 p-3 rounded-xl bg-[#E6FAF9] border border-[rgba(0,184,179,0.2)]">
                 <Database size={16} className="text-px-teal flex-shrink-0" />
-                <p className="text-sm text-px-navy"><strong>PostgreSQL</strong> is authoritative for institutional and auth records; <strong>MongoDB</strong> holds engine sessions.</p>
+                <p className="text-sm text-px-navy"><strong>PostgreSQL</strong> (via Prisma) is the main database for users, institutions, tests, sessions, and scores.</p>
               </div>
               <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-[var(--border)]">
                 <RefreshCcw size={16} className="text-px-teal flex-shrink-0" />
-                <p className="text-sm text-px-navy"><strong>Redis</strong> carries the deterministic phase cache, keyed on phase + input hash + prompt version.</p>
+                <p className="text-sm text-px-navy"><strong>Redis</strong> is the shared cache used across the platform.</p>
               </div>
             </motion.div>
           )}

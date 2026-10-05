@@ -40,6 +40,8 @@ import {
 } from './slides/18-EngineeringDeepDive'
 import Conclusion from './slides/23-Conclusion'
 import ThankYou from './slides/28-ThankYou'
+import { PlatformScreenshotSlides } from './slides/29-PlatformScreenshots'
+import { ReportDiagramSlides } from './slides/29-ReportDiagrams'
 
 export const SLIDE_COMPONENTS = [
   Cover,
@@ -69,6 +71,8 @@ export const SLIDE_COMPONENTS = [
   TechnicalChallenges,
   FutureTechnicalRoadmap,
   Conclusion,
+  ...PlatformScreenshotSlides,
+  ...ReportDiagramSlides,
   ThankYou,
 ]
 

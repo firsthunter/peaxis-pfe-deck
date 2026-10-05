@@ -10,7 +10,7 @@ export default function LogicalArch({ step }: Props) {
       <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-0.5">
         <motion.div variants={fadeUp}><SectionTag section="Architecture & Technologies" number="7" /></motion.div>
         <motion.h2 variants={fadeUp} className="text-3xl font-extrabold text-px-navy"><span className="text-px-teal">Logical</span> Architecture</motion.h2>
-        <motion.p variants={fadeUp} className="text-xs text-px-muted">Client, platform, AI, and data boundaries. Gemini or Groq is selected per phase by the model router.</motion.p>
+        <motion.p variants={fadeUp} className="text-xs text-px-muted">Client, platform, AI, and data boundaries. Gemini is the model provider, called per phase through the model router.</motion.p>
       </motion.div>
 
       <AnimatePresence>

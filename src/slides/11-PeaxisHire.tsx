@@ -45,7 +45,7 @@ export default function PeaxisHire({ step }: Props) {
             {step >= 1 && (
               <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45 }}>
                 <ScreenshotFrame
-                  src="/wayloom-web.png"
+                  src="/platform/parsed-test-editor.png"
                   alt="Wayloom clinician workspace"
                   caption="Wayloom Clinician Suite — test publishing and scoring review"
                   className="h-full"

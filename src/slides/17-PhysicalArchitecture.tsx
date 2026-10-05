@@ -10,7 +10,7 @@ export default function PhysicalArch({ step }: Props) {
       <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-0.5">
         <motion.div variants={fadeUp}><SectionTag section="Architecture & Technologies" number="7" /></motion.div>
         <motion.h2 variants={fadeUp} className="text-3xl font-extrabold text-px-navy"><span className="text-px-teal">Physical</span> Architecture</motion.h2>
-        <motion.p variants={fadeUp} className="text-xs text-px-muted">Deployment topology for web, API, AI inference, execution visualizer, and storage. Gemini or Groq is selected per phase.</motion.p>
+        <motion.p variants={fadeUp} className="text-xs text-px-muted">Deployment topology for web, API, AI inference, execution visualizer, and storage. Gemini is the model provider.</motion.p>
       </motion.div>
 
       <AnimatePresence>

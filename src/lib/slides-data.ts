@@ -1,4 +1,7 @@
 /* Slide registry — defines step counts and labels */
+import { PLATFORM_SCREENSHOTS } from './platform-screenshots'
+import { REPORT_DIAGRAMS } from './report-diagrams'
+
 export interface SlideConfig {
   id: string
   steps: number   // 0 = static; N = N progressive step reveals
@@ -45,6 +48,11 @@ export const SLIDES: SlideConfig[] = [
   { id: 'technical-roadmap',      steps: 3, label: 'Roadmap'        },
   // §10 Results & Conclusion
   { id: 'conclusion',          steps: 4, label: 'Conclusion'     },
+  // Platform screenshots
+  // (diagrams follow)
+  ...PLATFORM_SCREENSHOTS.map((d) => ({ id: d.id, steps: 0, label: d.label })),
+  // Appendix: diagrams from the rapport
+  ...REPORT_DIAGRAMS.map((d) => ({ id: d.id, steps: 0, label: d.label })),
   // Thank you
   { id: 'thank-you',           steps: 0, label: 'Thanks'          },
 ]

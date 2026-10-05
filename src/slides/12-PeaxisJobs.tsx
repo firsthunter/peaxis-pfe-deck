@@ -45,7 +45,7 @@ export default function PeaxisJobs({ step }: Props) {
             {step >= 1 && (
               <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45 }}>
                 <ScreenshotFrame
-                  src="/wayloom-portal.png"
+                  src="/platform/patient-assessment.png"
                   alt="Wayloom patient session portal"
                   caption="Wayloom Patient Portal — consent, conversational testing, and results"
                   className="h-full"

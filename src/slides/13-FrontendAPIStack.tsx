@@ -8,24 +8,24 @@ interface Props { step: number }
 
 const layers = [
   {
-    name: 'Frontend',
-    tech: ['Next.js', 'React', 'Tailwind', 'TypeScript'],
-    detail: 'Root, institution, clinician, and patient-session apps share React/TypeScript patterns',
+    name: 'Frontend · wayloom-web',
+    tech: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'Radix UI'],
+    detail: 'The website: TanStack Query for server data, React Hook Form + Zod for forms, next-intl for multi-language UI',
   },
   {
-    name: 'API',
-    tech: ['NestJS', 'Prisma', 'JWT', 'TypeScript'],
-    detail: 'NestJS + Prisma: institutions, auth, roles, plans, and transactional platform data',
+    name: 'Backend · wayloom-api',
+    tech: ['NestJS 11', 'Prisma', 'JWT', 'Helmet'],
+    detail: 'Business rules and database access: accounts, institutions, tests, sessions, and scores',
   },
   {
-    name: 'AI Service',
-    tech: ['FastAPI', 'Gemini / Groq', 'Python', 'LangGraph'],
-    detail: 'Stateless inference for digitization, scoring, and cultural/language adaptation',
+    name: 'AI brain · wayloom-ai',
+    tech: ['FastAPI', 'Gemini', 'Azure OpenAI', 'LangGraph'],
+    detail: 'Reads scanned tests (OCR), adapts them to other languages and cultures, and helps score answers',
   },
   {
-    name: 'Database',
-    tech: ['PostgreSQL', 'MongoDB', 'Redis'],
-    detail: 'Postgres for institutional data, Mongo for engine sessions, Redis for deterministic caching',
+    name: 'Data & infrastructure',
+    tech: ['PostgreSQL', 'Redis', 'Docker', 'pnpm'],
+    detail: 'PostgreSQL is the main database; Redis is the shared cache; Docker Compose runs the whole stack',
   },
 ]
 
@@ -43,7 +43,7 @@ export default function FrontendAPIStack({ step }: Props) {
             Tech <GradientText variant="teal">Stack</GradientText> — Four Layers
           </motion.h2>
           <motion.p variants={fadeUp} className="text-sm text-px-muted max-w-2xl">
-            Four applications (web, API, execution) and one AI engine across the implemented stack.
+            Three applications (web, API, AI brain) that talk over HTTP, on one shared PostgreSQL and Redis data layer.
           </motion.p>
         </motion.div>
 
@@ -80,9 +80,9 @@ export default function FrontendAPIStack({ step }: Props) {
               className="grid grid-cols-3 gap-3"
             >
               {[
-                { label: 'Tenant controls', value: 'Institution-scoped records with role and plan guards' },
-                { label: 'Deterministic caching', value: 'Redis cache keyed on phase + input hash + prompt version' },
-                { label: 'Model routing', value: 'Per-phase routing across Gemini and Groq providers' },
+                { label: 'Institution-scoped data', value: 'Every record belongs to an institution; the API enforces tenant boundaries' },
+                { label: 'Clinician keeps authority', value: 'AI assists interpretation against the validated rubric; the clinician signs off' },
+                { label: 'Secure by default', value: 'bcrypt passwords, JWT auth, Helmet headers, rate limiting, input validation' },
               ].map((p) => (
                 <div key={p.label} className="p-3 rounded-xl bg-[#E6FAF9] border border-[rgba(0,184,179,0.2)]">
                   <p className="text-xs font-bold text-px-teal uppercase tracking-wider">{p.label}</p>

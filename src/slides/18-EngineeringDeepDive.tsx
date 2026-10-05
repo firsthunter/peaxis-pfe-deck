@@ -222,7 +222,7 @@ export function EndToEndAIPipeline({ step }: Props) {
             { label: 'Model Router', sub: 'per-phase provider selection', icon: <RefreshCcw size={17} />, tone: 'teal' },
             { label: 'Deterministic cache', sub: 'Redis', icon: <Cpu size={17} />, tone: 'yellow' },
             { label: 'FastAPI', sub: 'inference only', icon: <BrainCircuit size={17} />, tone: 'coral' },
-            { label: 'Provider', sub: 'Gemini or Groq', icon: <Sparkles size={17} />, tone: 'teal' },
+            { label: 'Provider', sub: 'Gemini', icon: <Sparkles size={17} />, tone: 'teal' },
           ]}
         />
       </Reveal>
@@ -288,7 +288,7 @@ export function EvidenceMatchingEngine({ step }: Props) {
           items={[
             { label: 'Item response', sub: 'patient answer, incl. images', icon: <BriefcaseBusiness size={17} />, tone: 'gray' },
             { label: 'Scoring rules', sub: 'attached during digitization', icon: <FileText size={17} />, tone: 'coral' },
-            { label: 'AI scoring', sub: 'Gemini Vision for complex items', icon: <ShieldCheck size={17} />, tone: 'navy' },
+            { label: 'Semantic scoring', sub: 'described-level answers', icon: <ShieldCheck size={17} />, tone: 'navy' },
             { label: 'Normative adjustment', sub: 'demographic + z-score', icon: <Gauge size={17} />, tone: 'yellow' },
             { label: 'Domain subscore', sub: 'per cognitive domain', icon: <Activity size={17} />, tone: 'teal' },
           ]}
@@ -296,7 +296,7 @@ export function EvidenceMatchingEngine({ step }: Props) {
       </Reveal>
       <Reveal step={step} at={2} className="grid grid-cols-3 gap-3 mt-3">
         <Card title="1. Rule-based scoring" detail="Simple item types (multiple choice, digit span, serial subtraction) score deterministically against the attached rubric." tone="navy" meta="rules first" />
-        <Card title="2. AI-assisted scoring" detail="Complex or image-based responses (drawing, audio) are scored by AIScoringService using Gemini Vision, only where item type requires it." tone="coral" meta="AI only where needed" />
+        <Card title="2. Judged scoring" detail="Described-level answers go to the semantic scorer. Drawings are clinician-scored against printed criteria, with points summed." tone="coral" meta="clinician keeps drawings" />
         <Card title="3. Normative comparison" detail="Raw scores are adjusted for demographics and converted to a z-score / percentile against normative population data." tone="teal" meta="human authority" />
       </Reveal>
       <Reveal step={step} at={3} className="rounded-xl bg-[#FFFBEB] border border-[rgba(254,200,73,0.34)] p-4 mt-3">
@@ -322,7 +322,7 @@ export function MatchingAlgorithm({ step }: Props) {
         />
         <Card
           title="2. Score at session close"
-          detail="Simple items score against the rubric directly. Items requiring judgment (drawing, audio, free response) are scored by Gemini Vision, constrained to the item's scoring rule."
+          detail="Simple items score against the rubric directly. Described-level answers are judged by the semantic scorer; drawings wait for clinician scoring, and the total stays provisional until they are scored."
           tone="coral"
           icon={<BrainCircuit size={18} />}
         />
@@ -552,15 +552,15 @@ export function AIModelsRouting({ step }: Props) {
     <EngineeringSlide
       title="AI Models"
       accent="by Use Case"
-      subtitle="Gemini and Groq handle inference by phase; deterministic rules and normative data anchor the score."
+      subtitle="Gemini handles inference by phase; clinicians score drawings; deterministic rules and normative data anchor the score."
     >
       <Reveal step={step} at={1}>
         <MiniTable
           headers={['Use case', 'Technology', 'Role']}
           rows={[
             ['Document layout & OCR', 'Gemini Vision', 'Page understanding, block detection'],
-            ['Item scoring', 'Gemini Vision', 'Score complex/image-based responses'],
-            ['Translation & adaptation', 'Groq', 'Cultural & linguistic adaptation, back-translation'],
+            ['Item scoring', 'Gemini + clinician', 'Semantic scoring of described levels; clinicians score drawings'],
+            ['Translation & adaptation', 'Gemini', 'Cultural & linguistic adaptation, back-translation'],
             ['Clinician report', 'Gemini', 'Domain-level performance summary'],
             ['Model routing', 'Model Router', 'Per-phase provider selection & fallback'],
           ]}
@@ -581,7 +581,7 @@ export function PerformanceOptimizations({ step }: Props) {
     ['Phase pipeline', 'Slow inference is split into cacheable, retryable phases outside the request path.', <RefreshCcw size={17} />],
     ['Bounded scoring', 'AI scoring is called only for items whose rubric requires judgment.', <Search size={17} />],
     ['Adversarial test suite', 'Engine resilience validated against edge-case fixtures before rollout.', <FileText size={17} />],
-    ['Provider retries', 'The model router retries transient provider/network failures across Gemini and Groq.', <Zap size={17} />],
+    ['Provider retries', 'The model router retries transient provider/network failures on Gemini calls.', <Zap size={17} />],
     ['Graceful degradation', 'A deterministic fallback report generates when the LLM provider is unavailable.', <Cpu size={17} />],
   ] as const
 

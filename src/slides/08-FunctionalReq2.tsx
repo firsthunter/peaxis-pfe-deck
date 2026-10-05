@@ -19,7 +19,7 @@ const reqs = [
     icon: <Upload size={20} />,
     id: 'FR-07',
     title: 'AI-Assisted Scoring',
-    items: ['Gemini Vision scoring of responses', 'Preserves validated scoring logic'],
+    items: ['Semantic scoring of described-level answers', 'Preserves validated scoring logic'],
     color: '#00B8B3',
   },
   {
