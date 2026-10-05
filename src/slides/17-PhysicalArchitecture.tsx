@@ -22,9 +22,9 @@ export default function PhysicalArch({ step }: Props) {
             className="flex flex-1 items-center justify-center min-h-0"
           >
             <img
-              src="/wayloom-arch-physical.svg"
-              alt="Physical architecture showing users, wayloom-web, wayloom-api, wayloom-ai, wayloom-execution, and data storage"
-              className="w-full max-w-[910px] max-h-[470px] object-contain"
+              src="/report/diagram-8.png"
+              alt="Docker Compose deployment topology: base stack with wayloom-ai, wayloom-execution, PostgreSQL and Redis; development overlay with wayloom-api and wayloom-web"
+              className="w-full max-w-[1060px] max-h-[68vh] object-contain rounded-xl bg-white border border-[var(--border)] p-3"
             />
           </motion.div>
         )}

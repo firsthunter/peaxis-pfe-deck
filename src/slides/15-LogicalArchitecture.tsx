@@ -22,9 +22,9 @@ export default function LogicalArch({ step }: Props) {
             className="flex flex-1 items-center justify-center min-h-0"
           >
             <img
-              src="/wayloom-arch-logical.svg"
-              alt="Logical architecture showing the Next.js web app, NestJS API, FastAPI AI Brain, model router, and the data layer"
-              className="w-full max-w-[1060px] max-h-[460px] object-contain"
+              src="/report/diagram-4.png"
+              alt="Verified logical architecture: Next.js web app, capability router, NestJS API, FastAPI AI service, and data stores"
+              className="max-w-full max-h-[68vh] object-contain rounded-xl bg-white border border-[var(--border)] p-3"
             />
           </motion.div>
         )}
