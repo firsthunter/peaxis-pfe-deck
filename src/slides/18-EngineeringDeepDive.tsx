@@ -618,7 +618,7 @@ export function TechnicalChallenges({ step }: Props) {
           rows={[
             ['AI latency', 'Phased pipeline + deterministic cache + retries', 'Responsive digitization path'],
             ['Document quality', 'Vision layout + validator/repair nodes', 'Publishable spec or flagged for review'],
-            ['Cultural validity', 'Cultural & linguistic adaptation + back-translation', 'Clinically valid across language/culture'],
+            ['Cultural validity', 'Cultural & linguistic adaptation + back-translation', 'Validation across language/culture still to be shown'],
             ['Scoring safety', 'Forbidden-vocab guard on patient-facing text', 'No unsafe or non-clinical language reaches patients'],
             ['Provider outage', 'Model router retries + deterministic report fallback', 'Recoverable, observable processing'],
             ['Known migration gap', 'Mongo → Postgres migration in progress', 'Documented before production'],

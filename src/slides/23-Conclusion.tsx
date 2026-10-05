@@ -11,7 +11,7 @@ const sections = [
     icon: <CheckCircle size={18} />,
     title: 'Engineering Achievements',
     color: '#00B8B3',
-    items: ['Full-stack cognitive-testing platform, IRB-approved and clinically validated'],
+    items: ['Full-stack cognitive-testing platform, IRB approval secured for the research protocol'],
   },
   {
     icon: <Layers3 size={18} />,
